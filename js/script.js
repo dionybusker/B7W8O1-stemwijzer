@@ -49,7 +49,7 @@ function clickChangeBtn () {
 
     switch (elementId) {
         case 'nextBtn':
-            if (currentSubject <= subjects.length) {
+            if (currentSubject < (subjects.length - 1)) {
                 currentSubject++;
                 changeContent(currentSubject);
             }
@@ -58,8 +58,11 @@ function clickChangeBtn () {
 
             break;
         case 'previousBtn':
-            currentSubject--;
-            changeContent(currentSubject);
+            if (currentSubject > 0) {
+                currentSubject--;
+                changeContent(currentSubject);
+            }
+            
             console.log(currentSubject);
 
             break;
@@ -74,6 +77,10 @@ function clickChangeBtn () {
 }
 
 function changeContent (currentSubject) {
-    title.innerHTML = subjects[currentSubject].title;
-    statement.innerHTML = subjects[currentSubject].statement;
+    if (currentSubject >= 0 && currentSubject < subjects.length) {
+        title.innerHTML = subjects[currentSubject].title;
+        statement.innerHTML = subjects[currentSubject].statement;
+    } else {
+        console.log("no more data")
+    }
 }
