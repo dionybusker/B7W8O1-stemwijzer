@@ -2,17 +2,27 @@ const startContainer = document.getElementById("startContainer");
 show(startContainer);
 
 // buttons
-const startBtn = document.getElementById("startBtn");
-const nextBtn = document.getElementById("nextBtn");
-const previousBtn = document.getElementById("previousBtn");
+const startButton = document.getElementById("startBtn");
+// const nextBtn = document.getElementById("nextBtn");
+// const previousBtn = document.getElementById("previousBtn");
+
+const voteButtons = document.querySelectorAll(".voteBtn");
+
+console.log(voteButtons);
+
+voteButtons.forEach(element => {
+    element.onclick = nextStatement;
+});
+
+var votes = [];
 
 // content
 const title = document.getElementById("title");
 const statement = document.getElementById("statement");
 
-startBtn.onclick = clickStartBtn;
-nextBtn.onclick = clickChangeBtn;
-previousBtn.onclick = clickChangeBtn;
+startButton.onclick = clickStartButton;
+// nextBtn.onclick = clickChangeButton;
+// previousBtn.onclick = clickChangeButton;
 
 let currentSubject = 0;
 
@@ -25,8 +35,8 @@ function show (element) {
     element.classList.remove("hidden");
 }
 
-// when startBtn has been clicked
-function clickStartBtn () {
+// when startButton has been clicked
+function clickStartButton () {
     const startContainer = document.getElementById("startContainer");
     hide(startContainer);
     console.log("button clicked");
@@ -43,44 +53,47 @@ function clickStartBtn () {
     changeContent(currentSubject);
 }
 
-// when nextBtn or previousBtn has been clicked
-function clickChangeBtn () {
-    const elementId = this.getAttribute("id");
-
-    switch (elementId) {
-        case 'nextBtn':
-            if (currentSubject < (subjects.length - 1)) {
-                currentSubject++;
-                changeContent(currentSubject);
-            }
-            
-            console.log(currentSubject);
-
-            break;
-        case 'previousBtn':
-            if (currentSubject > 0) {
-                currentSubject--;
-                changeContent(currentSubject);
-            }
-            
-            console.log(currentSubject);
-
-            break;
-    }
-
-    // if (elementId == "nextBtn") {
-    //     console.log("you clicked next");
-    // }
-    // if (elementId == "previousBtn") {
-    //     console.log("you clicked previous");
-    // }
-}
-
 function changeContent (currentSubject) {
     if (currentSubject >= 0 && currentSubject < subjects.length) {
         title.innerHTML = subjects[currentSubject].title;
         statement.innerHTML = subjects[currentSubject].statement;
     } else {
         console.log("no more data")
+    }
+}
+
+function nextStatement () {
+    switch (this.innerHTML) {
+        case "Eens":
+            // console.log("pro");
+            if (currentSubject < (subjects.length - 1)) {
+                currentSubject++;
+                changeContent(currentSubject);
+                userChoice("pro");
+            }
+            break;
+        case "Geen van beide":
+            // console.log("geen");
+            if (currentSubject < (subjects.length - 1)) {
+                currentSubject++;
+                changeContent(currentSubject);
+                userChoice("geen");
+            }
+            break;
+        case "Oneens":
+            // console.log("contra");
+            if (currentSubject < (subjects.length - 1)) {
+                currentSubject++;
+                changeContent(currentSubject);
+                userChoice("contra");
+            }
+            break;
+    }
+}
+
+function userChoice (x) {
+    if (currentSubject > 0) {
+        votes.push(x);
+        console.log(votes);
     }
 }

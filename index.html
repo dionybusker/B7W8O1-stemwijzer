@@ -6,6 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Stemwijzer</title>
     <link rel="stylesheet" href="css/style.css">
+    <!-- font awesome -->
+    <script src="https://kit.fontawesome.com/8eccf2802e.js" crossorigin="anonymous"></script>
 </head>
 <body>
     <div id="startContainer" class="hidden">
@@ -16,13 +18,21 @@
     </div>
     
     <div id="container" class="hidden">
+        <i class="fas fa-arrow-circle-left"></i>
+        
         <h1 id="title">Title</h1>
         <p id="statement">Statement</p>
         
-        <button id="previousBtn">Previous</button>
-        <button id="nextBtn">Next</button>
+        <!-- <button id="previousBtn">Previous</button> -->
+        <!-- <button id="nextBtn">Next</button> -->
+
+        <button class="voteBtn">Eens</button>
+        <button class="voteBtn">Geen van beide</button>
+        <button class="voteBtn">Oneens</button>
+
+        <a href="#">Sla deze vraag over <i class="fas fa-arrow-right"></i></a>
     </div>
-    
+
     <script src="js/testdata.js"></script>
     <script src="js/script.js"></script>
 </body>
