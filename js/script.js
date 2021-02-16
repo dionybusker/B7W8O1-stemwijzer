@@ -1,3 +1,6 @@
+const startContainer = document.getElementById("startContainer");
+show(startContainer);
+
 // buttons
 const startBtn = document.getElementById("startBtn");
 const nextBtn = document.getElementById("nextBtn");
@@ -8,8 +11,8 @@ const title = document.getElementById("title");
 const statement = document.getElementById("statement");
 
 startBtn.onclick = clickStartBtn;
-nextBtn.onclick = changeStatement;
-previousBtn.onclick = changeStatement;
+nextBtn.onclick = clickChangeBtn;
+previousBtn.onclick = clickChangeBtn;
 
 let currentSubject = 0;
 
@@ -22,7 +25,10 @@ function show (element) {
     element.classList.remove("hidden");
 }
 
+// when startBtn has been clicked
 function clickStartBtn () {
+    const startContainer = document.getElementById("startContainer");
+    hide(startContainer);
     console.log("button clicked");
 
     const elementId = this.getAttribute("id");
@@ -37,23 +43,25 @@ function clickStartBtn () {
     changeContent(currentSubject);
 }
 
-function changeStatement () {
+// when nextBtn or previousBtn has been clicked
+function clickChangeBtn () {
     const elementId = this.getAttribute("id");
 
     switch (elementId) {
         case 'nextBtn':
-            currentSubject++;
-            
-            changeContent(currentSubject);
+            if (currentSubject <= subjects.length) {
+                currentSubject++;
+                changeContent(currentSubject);
+            }
             
             console.log(currentSubject);
+
             break;
         case 'previousBtn':
             currentSubject--;
-            
             changeContent(currentSubject);
-            
             console.log(currentSubject);
+
             break;
     }
 
