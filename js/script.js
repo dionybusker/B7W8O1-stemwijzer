@@ -11,10 +11,11 @@ const voteButtons = document.querySelectorAll(".voteBtn");
 console.log(voteButtons);
 
 voteButtons.forEach(element => {
-    element.onclick = nextStatement;
+    element.onclick = switchStatement;
 });
 
 const previousStatement = document.getElementById("previousStatement");
+const skipStatement = document.getElementById("skipStatement");
 
 // content
 const title = document.getElementById("title");
@@ -24,7 +25,8 @@ startButton.onclick = clickStartButton;
 // nextBtn.onclick = clickChangeButton;
 // previousBtn.onclick = clickChangeButton;
 
-previousStatement.onclick = previous;
+previousStatement.onclick = switchStatement;
+skipStatement.onclick = switchStatement;
 
 let currentSubject = 0;
 
@@ -62,7 +64,8 @@ function changeContent (currentSubject) {
     }
 }
 
-function nextStatement () {
+function switchStatement () {
+    console.log(this.getAttribute("id"))
     switch (this.innerHTML) {
         case "Eens":
             // console.log("pro");
@@ -86,6 +89,21 @@ function nextStatement () {
                 currentSubject++;
                 changeContent(currentSubject);
                 userChoice("contra");
+            }
+            break;
+    }
+    switch (this.getAttribute("id")) {
+        case "previousStatement":
+            if (currentSubject > 0 && currentSubject <= (subjects.length - 1)) {
+                currentSubject--;
+                changeContent(currentSubject);
+            }
+            break;
+        case "skipStatement":
+            if (currentSubject <= (subjects.length - 1)) {
+                currentSubject++;
+                changeContent(currentSubject);
+                userChoice("");
             }
             break;
     }
