@@ -3,8 +3,6 @@ show(startContainer);
 
 // buttons
 const startButton = document.getElementById("startBtn");
-// const nextBtn = document.getElementById("nextBtn");
-// const previousBtn = document.getElementById("previousBtn");
 
 const voteButtons = document.querySelectorAll(".voteBtn");
 
@@ -22,8 +20,6 @@ const title = document.getElementById("title");
 const statement = document.getElementById("statement");
 
 startButton.onclick = clickStartButton;
-// nextBtn.onclick = clickChangeButton;
-// previousBtn.onclick = clickChangeButton;
 
 previousStatement.onclick = switchStatement;
 skipStatement.onclick = switchStatement;
@@ -64,6 +60,7 @@ function changeContent (currentSubject) {
     }
 }
 
+// dit kan mogelijk korter, eventueel splitsen in meerdere functies
 function switchStatement () {
     console.log(this.getAttribute("id"))
     switch (this.innerHTML) {
@@ -92,13 +89,16 @@ function switchStatement () {
             }
             break;
     }
+
     switch (this.getAttribute("id")) {
+        // Go to previous statement
         case "previousStatement":
             if (currentSubject > 0 && currentSubject <= (subjects.length - 1)) {
                 currentSubject--;
                 changeContent(currentSubject);
             }
             break;
+        // Skip the current statement
         case "skipStatement":
             if (currentSubject <= (subjects.length - 1)) {
                 currentSubject++;
@@ -109,12 +109,14 @@ function switchStatement () {
     }
 }
 
+// Add vote to subjects array
 function userChoice (vote) {
     subjects[currentSubject - 1].voted = vote;
 
     console.log(subjects);
 }
 
+// Go to previous statement
 function previous () {
     const elementId = this.getAttribute("id");
 
