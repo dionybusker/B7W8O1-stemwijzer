@@ -14,7 +14,7 @@ voteButtons.forEach(element => {
     element.onclick = nextStatement;
 });
 
-var votes = [];
+const previousStatement = document.getElementById("previousStatement");
 
 // content
 const title = document.getElementById("title");
@@ -23,6 +23,8 @@ const statement = document.getElementById("statement");
 startButton.onclick = clickStartButton;
 // nextBtn.onclick = clickChangeButton;
 // previousBtn.onclick = clickChangeButton;
+
+previousStatement.onclick = previous;
 
 let currentSubject = 0;
 
@@ -57,8 +59,6 @@ function changeContent (currentSubject) {
     if (currentSubject >= 0 && currentSubject < subjects.length) {
         title.innerHTML = subjects[currentSubject].title;
         statement.innerHTML = subjects[currentSubject].statement;
-    } else {
-        console.log("no more data")
     }
 }
 
@@ -66,7 +66,7 @@ function nextStatement () {
     switch (this.innerHTML) {
         case "Eens":
             // console.log("pro");
-            if (currentSubject < (subjects.length - 1)) {
+            if (currentSubject <= (subjects.length - 1)) {
                 currentSubject++;
                 changeContent(currentSubject);
                 userChoice("pro");
@@ -74,7 +74,7 @@ function nextStatement () {
             break;
         case "Geen van beide":
             // console.log("geen");
-            if (currentSubject < (subjects.length - 1)) {
+            if (currentSubject <= (subjects.length - 1)) {
                 currentSubject++;
                 changeContent(currentSubject);
                 userChoice("geen");
@@ -82,7 +82,7 @@ function nextStatement () {
             break;
         case "Oneens":
             // console.log("contra");
-            if (currentSubject < (subjects.length - 1)) {
+            if (currentSubject <= (subjects.length - 1)) {
                 currentSubject++;
                 changeContent(currentSubject);
                 userChoice("contra");
@@ -91,9 +91,19 @@ function nextStatement () {
     }
 }
 
-function userChoice (x) {
-    if (currentSubject > 0) {
-        votes.push(x);
-        console.log(votes);
+function userChoice (vote) {
+    subjects[currentSubject - 1].voted = vote;
+
+    console.log(subjects);
+}
+
+function previous () {
+    const elementId = this.getAttribute("id");
+
+    if (elementId == "previousStatement") {
+        if (currentSubject > 0) {
+            currentSubject--;
+            changeContent(currentSubject);
+        }
     }
 }
