@@ -8,28 +8,46 @@
     <link rel="stylesheet" href="css/style.css">
     <!-- font awesome -->
     <script src="https://kit.fontawesome.com/8eccf2802e.js" crossorigin="anonymous"></script>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 </head>
 <body>
-    <div id="startContainer" class="hidden">
-        <h1>StemWijzer</h1>
-        <p>Dit is de stemwijzer opdracht.</p>
+    <div class="bg-white col-10 mx-auto p-0">
+        <div id="startContainer" class="row col-12 hidden m-0 p-0">
+            <div class="col-8">
+                <img src="img/stemwijzer-logo.png" alt="stemwijzer logo">
+                <h6>StemWijzer Tweede Kamer 2017</h6>
+                <p>Dit is de stemwijzer opdracht.</p>
+
+                <i class="fas fa-universal-access text-info"></i>
+                <i class="fas fa-lock text-info"></i>
+            </div>
+            
+            <div class="col-4">
+                <button id="startBtn" class="btn btn-info col-3">Start</button>
+            </div>
+        </div>
         
-        <button id="startBtn">Start</button>
+        <div id="container" class="hidden">
+            <a href="#" id="previousStatement"><i class="fas fa-arrow-circle-left"></i></a>
+            
+            <h1 id="title">Title</h1>
+            <p id="statement">Statement</p>
+            
+            <button class="voteBtn">Eens</button>
+            <button class="voteBtn">Geen van beide</button>
+            <button class="voteBtn">Oneens</button>
+
+            <a href="#" id="skipStatement">Sla deze vraag over <i class="fas fa-arrow-right"></i></a>
+        </div>
     </div>
     
-    <div id="container" class="hidden">
-        <a href="#" id="previousStatement"><i class="fas fa-arrow-circle-left"></i></a>
-        
-        <h1 id="title">Title</h1>
-        <p id="statement">Statement</p>
-        
-        <button class="voteBtn">Eens</button>
-        <button class="voteBtn">Geen van beide</button>
-        <button class="voteBtn">Oneens</button>
-
-        <a href="#" id="skipStatement">Sla deze vraag over <i class="fas fa-arrow-right"></i></a>
-    </div>
-
+    
+    <!-- Bootstrap javascript -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    
     <script src="js/testdata.js"></script>
     <script src="js/script.js"></script>
 </body>
