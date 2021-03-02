@@ -13,14 +13,24 @@
 </head>
 <body>
     <div class="bg-white col-10 mx-auto p-0">
-        <div id="startContainer" class="row col-12 hidden m-0 p-0">
+        <div id="startContainer" class="row col-12 m-0 p-0">
             <div class="col-8">
-                <img src="img/stemwijzer-logo.png" alt="stemwijzer logo">
-                <h6>StemWijzer Tweede Kamer 2017</h6>
-                <p>Dit is de stemwijzer opdracht.</p>
+                <div class="col-12">
+                    <img src="img/stemwijzer-logo.png" alt="stemwijzer logo">
+                    <h6>StemWijzer Tweede Kamer 2017</h6>
+                    <p>Test uw politieke voorkeur aan de hand van 30 stellingen</p>
+                </div>
+                
+                <div class="row">
+                    <i class="fas fa-universal-access col-1 text-info"></i>
+                    <p class="col-11">Bekijk de toegankelijke versie voor mensen met een visuele beperking</p>
+                </div>
+                
+                <div class="row">
+                    <i class="fas fa-lock col-1 text-info"></i>
+                    <p class="col-11">De StemWijzer maakt geen gebruik van cookies. Klik hier voor de volledige privacy statement</p>
+                </div>
 
-                <i class="fas fa-universal-access text-info"></i>
-                <i class="fas fa-lock text-info"></i>
             </div>
             
             <div class="col-4">
@@ -28,17 +38,19 @@
             </div>
         </div>
         
-        <div id="container" class="hidden">
-            <a href="#" id="previousStatement"><i class="fas fa-arrow-circle-left"></i></a>
+        <div id="container" class="row col-12 m-0 p-0 d-none">
+            <div>
+                <a href="#" id="previousStatement"><i class="fas fa-arrow-circle-left"></i></a>
             
-            <h1 id="title">Title</h1>
-            <p id="statement">Statement</p>
-            
-            <button class="voteBtn">Eens</button>
-            <button class="voteBtn">Geen van beide</button>
-            <button class="voteBtn">Oneens</button>
-
-            <a href="#" id="skipStatement">Sla deze vraag over <i class="fas fa-arrow-right"></i></a>
+                <h1 id="title">Title</h1>
+                <p id="statement">Statement</p>
+                
+                <button class="voteBtn">Eens</button>
+                <button class="voteBtn">Geen van beide</button>
+                <button class="voteBtn">Oneens</button>
+    
+                <a href="#" id="skipStatement">Sla deze vraag over <i class="fas fa-arrow-right"></i></a>
+            </div>
         </div>
     </div>
     

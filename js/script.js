@@ -1,5 +1,5 @@
 const startContainer = document.getElementById("startContainer");
-show(startContainer);
+// show(startContainer);
 
 // buttons
 const startButton = document.getElementById("startBtn");
@@ -28,16 +28,16 @@ let currentSubject = 0;
 
 // functies hide en show mogelijk in 1 functie?
 function hide (element) {
-    element.classList.add("hidden");
+    element.classList.add("d-none");
 }
 
 function show (element) {
-    element.classList.remove("hidden");
+    element.classList.remove("d-none");
 }
 
 // when startButton has been clicked
 function clickStartButton () {
-    const startContainer = document.getElementById("startContainer");
+    // const startContainer = document.getElementById("startContainer");
     hide(startContainer);
     console.log("button clicked");
 
