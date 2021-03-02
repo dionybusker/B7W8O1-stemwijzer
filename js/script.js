@@ -111,7 +111,7 @@ function switchStatement () {
 
 // Add vote to subjects array
 function userChoice (vote) {
-    subjects[currentSubject - 1].voted = vote;
+    subjects[currentSubject - 1].vote = vote;
 
     console.log(subjects);
 }
