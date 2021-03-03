@@ -55,7 +55,7 @@ function clickStartButton () {
 
 function changeContent (currentSubject) {
     if (currentSubject >= 0 && currentSubject < subjects.length) {
-        title.innerHTML = subjects[currentSubject].title;
+        title.innerHTML = (currentSubject + 1) + '. ' + subjects[currentSubject].title;
         statement.innerHTML = subjects[currentSubject].statement;
     }
 }
@@ -112,6 +112,13 @@ function switchStatement () {
 // Add vote to subjects array
 function userChoice (vote) {
     subjects[currentSubject - 1].vote = vote;
+    subjects[currentSubject - 1].score = 0;
+
+    // subjects.forEach(function(subject, index) {
+    //     if (subject.vote == subject.parties.position) {
+    //         console.log("test")
+    //     }
+    // })
 
     console.log(subjects);
 }
@@ -127,3 +134,20 @@ function previous () {
         }
     }
 }
+
+/*
+    let fruits = ["apple", "orange", "lemon"];
+
+    let myFruits = [
+        { name: "lemon", points: 0 },
+        { name: "orange", points: 0 },
+        { name: "apple", points: 0 }
+    ];
+
+    myFruits.forEach(function(myFruit, index){
+        if (myFruit.name == fruits[index]) {
+            myFruit.points++;
+            console.log("fruit: " + myFruit.name);
+        }
+    });
+*/
