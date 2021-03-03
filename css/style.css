@@ -8,3 +8,7 @@ body {
 i {
     font-size: 2em;
 }
+
+.btn-highlight {
+    background-color: rgb(1,138,169);
+}
