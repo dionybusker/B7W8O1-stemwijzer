@@ -6,7 +6,7 @@ const startButton = document.getElementById("startBtn");
 
 const voteButtons = document.querySelectorAll(".voteBtn");
 
-console.log(voteButtons);
+// console.log(voteButtons);
 
 voteButtons.forEach(element => {
     element.onclick = switchStatement;
@@ -39,13 +39,13 @@ function show (element) {
 function clickStartButton () {
     // const startContainer = document.getElementById("startContainer");
     hide(startContainer);
-    console.log("button clicked");
+    // console.log("button clicked");
 
-    const elementId = this.getAttribute("id");
+    // const elementId = this.getAttribute("id");
 
-    if (elementId == "startBtn") {
-        console.log("this is the start button");
-    }
+    // if (elementId == "startBtn") {
+    //     console.log("this is the start button");
+    // }
 
     const container = document.getElementById("container");
     show(container);
@@ -62,7 +62,7 @@ function changeContent (currentSubject) {
 
 // dit kan mogelijk korter, eventueel splitsen in meerdere functies
 function switchStatement () {
-    console.log(this.getAttribute("id"))
+    // console.log(this.getAttribute("id"))
     switch (this.innerHTML) {
         case "Eens":
             // console.log("pro");
@@ -135,6 +135,27 @@ function previous () {
     }
 }
 
+// dit zou mogelijk pas moeten gebeuren zodra alle statements gedaan zijn
+function match () {
+    subjects.forEach(function(myVote, index) {
+        if (myVote.vote == subjects[index].parties.opinion) {
+            myVote.score++;
+        }
+    })
+}
+ subjects.forEach(function(subject,index){
+     console.log(subject)
+     console.log(subjects[index].parties)
+ })
+/*
+    STAPPENPLAN
+
+    stap 1. checken of je voorbij de laatste vraag bent
+    stap 2. subjects.votes vergelijken met subjects.parties.position
+    stap 3. score toekennen 
+
+*/
+
 /*
     let fruits = ["apple", "orange", "lemon"];
 
@@ -150,4 +171,15 @@ function previous () {
             console.log("fruit: " + myFruit.name);
         }
     });
+
+
+    fruits -> subjects
+    myFruits -> subjects
+
+    subjects.forEach(function(myVote, index) {
+        if (myVote.vote == subjects[index]) {
+            myVote.points++;
+        }
+    });
+
 */
