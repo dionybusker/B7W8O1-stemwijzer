@@ -70,6 +70,7 @@ function switchStatement () {
                 currentSubject++;
                 changeContent(currentSubject);
                 userChoice("pro");
+                this.style.backgroundColor = "blue";
             }
             break;
         case "Geen van beide":
@@ -78,6 +79,7 @@ function switchStatement () {
                 currentSubject++;
                 changeContent(currentSubject);
                 userChoice("geen");
+                this.style.backgroundColor = "blue";
             }
             break;
         case "Oneens":
@@ -86,6 +88,7 @@ function switchStatement () {
                 currentSubject++;
                 changeContent(currentSubject);
                 userChoice("contra");
+                this.style.backgroundColor = "blue";
             }
             break;
     }
@@ -96,6 +99,12 @@ function switchStatement () {
             if (currentSubject > 0 && currentSubject <= (subjects.length - 1)) {
                 currentSubject--;
                 changeContent(currentSubject);
+
+                console.log(subjects[currentSubject].vote)
+                
+                // if (subjects[currentSubject].vote == "pro") {
+
+                // }
             }
             break;
         // Skip the current statement
@@ -123,18 +132,6 @@ function userChoice (vote) {
     console.log(subjects);
 }
 
-// Go to previous statement
-function previous () {
-    const elementId = this.getAttribute("id");
-
-    if (elementId == "previousStatement") {
-        if (currentSubject > 0) {
-            currentSubject--;
-            changeContent(currentSubject);
-        }
-    }
-}
-
 // dit zou mogelijk pas moeten gebeuren zodra alle statements gedaan zijn
 function match () {
     subjects.forEach(function(myVote, index) {
@@ -143,10 +140,12 @@ function match () {
         }
     })
 }
- subjects.forEach(function(subject,index){
-     console.log(subject)
-     console.log(subjects[index].parties)
- })
+
+subjects.forEach(function(subject, index) {
+    console.log(subject);
+    console.log(subjects[index].parties);
+});
+
 /*
     STAPPENPLAN
 
