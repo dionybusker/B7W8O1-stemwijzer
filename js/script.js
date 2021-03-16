@@ -9,6 +9,7 @@ const buttons = document.querySelectorAll(".buttons");
 // Variables
 var currentSubject = 0;
 
+/* ik moet dit nog een keer uit zien te voeren zodra de startContainer weer zichtbaar is en de statementContainer is verborgen */
 startButton.onclick = changeView;
 
 buttons.forEach(element => {
@@ -27,15 +28,23 @@ function show(element) {
 
 // Hide startContainer and show statementContainer
 function changeView() {
+    if (currentSubject < 0) {
+        currentSubject = 0;
+    }
     hide(startContainer);
     show(statementContainer);
     changeContent(currentSubject);
+    console.log(startButton);
 }
 
 function changeContent(currentSubject) {
     if (currentSubject >= 0 && currentSubject < subjects.length) {
         title.innerHTML = subjects[currentSubject].title;
         statement.innerHTML = subjects[currentSubject].statement;
+    } else {
+        /* hiermee verberg ik de statementContainer, en wordt de startContainer zichtbaar */
+        show(startContainer);
+        hide(statementContainer);
     }
 }
 
@@ -65,6 +74,7 @@ function switchStatement() {
         default:
             break;
     }
+    console.log(currentSubject)
 }
 
 // Go to the next statement
