@@ -28,6 +28,7 @@ function show(element) {
 
 // Hide startContainer and show statementContainer
 function changeView() {
+    // wanneer je bij de laatste statement bent, dan ga je ook terug naar de homepage
     if (currentSubject < 0) {
         currentSubject = 0;
     }
