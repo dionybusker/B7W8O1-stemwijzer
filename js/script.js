@@ -51,50 +51,45 @@ function viewContent(currentSubject) {
 // Switch between multiple statements
 function switchStatement() {
     /* in de verschillende statements moeten er ook nog een extra vote toegevoegd worden op basis van welke knop er is ingedrukt */
-    if (this.innerHTML == "Ga terug") {
-        console.log(this.innerHTML);
-        goToPreviousStatement();
-    } else {
-        console.log(this.innerHTML);
-        goToNextStatement();
-    }
 
-    // switch (this.innerHTML) {
-    //     case "Ga terug":
-    //         console.log("Ga terug");
-    //         goToPreviousStatement();
-    //         break;
-    //     case "Eens":
-    //         console.log("Eens");
-    //         goToNextStatement();
-    //         break;
-    //     case "Geen van beide":
-    //         console.log("Geen van beide");
-    //         goToNextStatement();
-    //         break;
-    //     case "Oneens":
-    //         console.log("Oneens");
-    //         goToNextStatement();
-    //         break;
-    //     case "Sla deze vraag over":
-    //         console.log("Sla deze vraag over");
-    //         goToNextStatement();
-    //         break;
-    //     default:
-    //         break;
-    // }
+    switch (this.id) {
+        case "goBackButton":
+            console.log("Ga terug");
+            goToPreviousStatement();
+            break;
+        case "proButton":
+            console.log("Eens");
+            goToNextStatement();
+            break;
+        case "noneButton":
+            console.log("Geen van beide");
+            goToNextStatement();
+            break;
+        case "contraButton":
+            console.log("Oneens");
+            goToNextStatement();
+            break;
+        case "skipButton":
+            console.log("Sla deze vraag over");
+            goToNextStatement();
+            break;
+        default:
+            break;
+    }
     console.log(currentSubject)
 }
 
 // Go to the next statement
 function goToNextStatement() {
-    if (currentSubject < subjects.length) {
+    if (currentSubject < (subjects.length - 1)) {
         currentSubject++;
         viewContent(currentSubject);
     }
-    /*
-        else met hide en show voor nieuwe div
-    */
+    // else {
+    //     /* verbergen van de statementContainer, zichtbaar maken van de volgende container */
+    //     hide(statementContainer);
+    //     show(...);
+    // }
 }
 
 // Go back to the previous statement
