@@ -59,24 +59,28 @@ function switchStatement() {
             break;
         case "proButton":
             console.log("Eens");
+            addUserVote("pro")
             goToNextStatement();
             break;
         case "noneButton":
             console.log("Geen van beide");
+            addUserVote("geen");
             goToNextStatement();
             break;
         case "contraButton":
             console.log("Oneens");
+            addUserVote("contra");
             goToNextStatement();
             break;
         case "skipButton":
             console.log("Sla deze vraag over");
+            addUserVote("");
             goToNextStatement();
             break;
         default:
             break;
     }
-    console.log(currentSubject)
+    console.log(subjects);
 }
 
 // Go to the next statement
@@ -101,4 +105,8 @@ function goToPreviousStatement() {
         hide(statementContainer);
         show(startContainer);
     }
+}
+
+function addUserVote(vote) {
+    subjects[currentSubject].vote = vote;
 }
