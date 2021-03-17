@@ -1,7 +1,9 @@
 // Constants
 const startContainer = document.getElementById("startContainer");
 const statementContainer = document.getElementById("statementContainer");
+const partyContainer = document.getElementById("partyContainer");
 const startButton = document.getElementById("startButton");
+const goBackButton = document.getElementById("goBackButton");
 const title = document.getElementById("title");
 const statement = document.getElementById("statement");
 const buttons = document.querySelectorAll(".buttons");
@@ -35,6 +37,7 @@ function changeView() {
 
     hide(startContainer);
     show(statementContainer);
+    show(goBackButton)
     
     viewContent(currentSubject);
     console.log(startButton);
@@ -80,7 +83,7 @@ function switchStatement() {
         default:
             break;
     }
-    console.log(subjects);
+    console.log(currentSubject);
 }
 
 // Go to the next statement
@@ -88,12 +91,11 @@ function goToNextStatement() {
     if (currentSubject < (subjects.length - 1)) {
         currentSubject++;
         viewContent(currentSubject);
+    } else {
+        /* verbergen van de statementContainer, zichtbaar maken van de volgende container */
+        hide(statementContainer);
+        show(partyContainer);
     }
-    // else {
-    //     /* verbergen van de statementContainer, zichtbaar maken van de volgende container */
-    //     hide(statementContainer);
-    //     show(...);
-    // }
 }
 
 // Go back to the previous statement
@@ -103,6 +105,7 @@ function goToPreviousStatement() {
         viewContent(currentSubject);
     } else {
         hide(statementContainer);
+        hide(goBackButton)
         show(startContainer);
     }
 }
