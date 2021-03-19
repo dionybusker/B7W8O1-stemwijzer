@@ -102,6 +102,7 @@ function goToNextStatement() {
 // Go back to the previous statement
 function goToPreviousStatement() {
     if (currentSubject > 0) {
+        // show(statementContainer);
         currentSubject--;
         viewContent(currentSubject);
     } else {
