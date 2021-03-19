@@ -30,7 +30,6 @@ function show(element) {
 
 // Hide startContainer and show statementContainer
 function changeView() {
-    /* BUG -- wanneer je bij de laatste statement bent, dan telt currentSubject steeds op */
     if (currentSubject < 0) {
         currentSubject = 0;
     }
@@ -40,10 +39,12 @@ function changeView() {
     show(goBackButton)
     
     viewContent(currentSubject);
+    
     console.log(startButton);
     console.log(currentSubject);
 }
 
+// Display the different statements
 function viewContent(currentSubject) {
     if (currentSubject >= 0 && currentSubject < subjects.length) {
         title.innerHTML = subjects[currentSubject].title;
@@ -83,7 +84,7 @@ function switchStatement() {
         default:
             break;
     }
-    console.log(currentSubject);
+    console.log(subjects);
 }
 
 // Go to the next statement
@@ -105,8 +106,14 @@ function goToPreviousStatement() {
         viewContent(currentSubject);
     } else {
         hide(statementContainer);
-        hide(goBackButton)
+        hide(goBackButton);
+        hide(partyContainer);
         show(startContainer);
+    }
+
+    if (currentSubject > 0 && currentSubject < subjects.length) {
+        hide(partyContainer);
+        show(statementContainer);
     }
 }
 
