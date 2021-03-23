@@ -10,6 +10,7 @@ const buttons = document.querySelectorAll(".buttons");
 
 // Variables
 var currentSubject = 0;
+var currentContainer = 0; // Always start with startContainer (0)
 
 /* ik moet dit nog een keer uit zien te voeren zodra de startContainer weer zichtbaar is en de statementContainer is verborgen */
 startButton.onclick = changeView;
@@ -34,14 +35,22 @@ function changeView() {
         currentSubject = 0;
     }
 
-    hide(startContainer);
-    show(statementContainer);
-    show(goBackButton)
+    if (currentContainer == 0) {
+        hide(startContainer);
+        show(statementContainer);
+        show(goBackButton);
+    } else if (currentContainer == 2) {
+        hide(statementContainer);
+        show(partyContainer);
+    }
+    
+    currentContainer++;
     
     viewContent(currentSubject);
     
     console.log(startButton);
-    console.log(currentSubject);
+    // console.log(currentSubject);
+    console.log(currentContainer);
 }
 
 // Display the different statements
@@ -66,7 +75,7 @@ function switchStatement() {
             addUserVote("pro")
             goToNextStatement();
             break;
-        case "noneButton":
+        case "neitherButton":
             console.log("Geen van beide");
             addUserVote("geen");
             goToNextStatement();
@@ -89,27 +98,36 @@ function switchStatement() {
 
 // Go to the next statement
 function goToNextStatement() {
-    if (currentSubject < (subjects.length - 1)) {
-        currentSubject++;
-        viewContent(currentSubject);
-    } else {
-        /* verbergen van de statementContainer, zichtbaar maken van de volgende container */
-        hide(statementContainer);
-        show(partyContainer);
+    if (currentContainer == 1) {
+        if (currentSubject < (subjects.length - 1)) {
+            currentSubject++;
+            viewContent(currentSubject);
+        }
     }
+
+    //  else {
+    //     /* verbergen van de statementContainer, zichtbaar maken van de volgende container */
+    //     hide(statementContainer);
+    //     show(partyContainer);
+    // }
+    console.log(currentContainer)
+    console.log(currentSubject)
 }
 
 // Go back to the previous statement
 function goToPreviousStatement() {
-    if (currentSubject > 0) {
-        // show(statementContainer);
-        currentSubject--;
-        viewContent(currentSubject);
-    } else {
-        hide(statementContainer);
-        hide(goBackButton);
-        hide(partyContainer);
-        show(startContainer);
+    if (currentContainer != 0) {
+        if (currentSubject > 0) {
+            // show(statementContainer);
+            currentSubject--;
+            viewContent(currentSubject);
+        } else {
+            hide(statementContainer);
+            hide(goBackButton);
+            hide(partyContainer);
+            show(startContainer);
+        }
+        currentContainer--;
     }
 
     if (currentSubject > 0 && currentSubject < subjects.length) {
