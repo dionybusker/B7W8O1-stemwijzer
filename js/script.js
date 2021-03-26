@@ -39,12 +39,14 @@ function changeView() {
         hide(startContainer);
         show(statementContainer);
         show(goBackButton);
+        currentContainer++;
+    } else if (currentContainer == 1) {
+        show(statementContainer);
+        hide(partyContainer);
     } else if (currentContainer == 2) {
         hide(statementContainer);
         show(partyContainer);
     }
-    
-    currentContainer++;
     
     viewContent(currentSubject);
     
@@ -98,18 +100,16 @@ function switchStatement() {
 
 // Go to the next statement
 function goToNextStatement() {
-    if (currentContainer == 1) {
-        if (currentSubject < (subjects.length - 1)) {
-            currentSubject++;
-            viewContent(currentSubject);
-        }
+    if (currentContainer == 1 && currentSubject == (subjects.length - 1)) {
+        currentContainer++;
+        changeView();
     }
 
-    //  else {
-    //     /* verbergen van de statementContainer, zichtbaar maken van de volgende container */
-    //     hide(statementContainer);
-    //     show(partyContainer);
-    // }
+    if (currentSubject < (subjects.length - 1)) {
+        currentSubject++;
+        viewContent(currentSubject);
+    }
+
     console.log("currentSubject: " + currentSubject)
     console.log("currentContainer: " + currentContainer)
 }
@@ -122,28 +122,24 @@ function goToPreviousStatement() {
      * de "Ga terug"-knop wordt gebruikt om te kunnen navigeren tussen de statements (door naar de vorige statement(s) te gaan)
      * 
      */
-    // if (currentContainer != 0) {
-        if (currentSubject > 0) {
-            // show(statementContainer);
-            currentSubject--;
-            
-            viewContent(currentSubject);
-        } else {
-            if (currentSubject == 0 && currentContainer == 1) {
-                currentContainer--;
+    if (currentSubject > 0 && currentContainer == 1) {
+        currentSubject--;
+        
+        viewContent(currentSubject);
+    } else if (currentSubject == 0 && currentContainer == 1) {
+        currentContainer--;
 
-                hide(statementContainer);
-                hide(goBackButton);
-                hide(partyContainer);
-                show(startContainer);
-            }
-        }
-    // }
+        hide(statementContainer);
+        hide(goBackButton);
+        hide(partyContainer);
+        show(startContainer);
 
-    // if (currentSubject > 0 && currentSubject < subjects.length) {
-    //     hide(partyContainer);
-    //     show(statementContainer);
-    // }
+        // changeView();
+    } else if (currentSubject == (subjects.length - 1) && currentContainer == 2) {
+        currentContainer--;
+
+        changeView();
+    }
 
     console.log("currentSubject: " + currentSubject)
     console.log("currentContainer: " + currentContainer)
