@@ -35,6 +35,10 @@ function changeView() {
         currentSubject = 0;
     }
 
+    /**
+     * er wordt bepaald wat currentContainer is
+     * op basis hiervan wordt er een view weergegeven
+     */
     if (currentContainer == 0) {
         hide(startContainer);
         show(statementContainer);
@@ -65,29 +69,33 @@ function viewContent(currentSubject) {
 
 // Switch between multiple statements
 function switchStatement() {
-    /* in de verschillende statements moeten er ook nog een extra vote toegevoegd worden op basis van welke knop er is ingedrukt */
+    console.log(this.id + " button");
+
+    // if (this.id == subjects[currentSubject].vote) {
+    //     console.log("test")
+    // }
 
     switch (this.id) {
         case "goBackButton":
             // console.log("Ga terug");
             goToPreviousStatement();
             break;
-        case "proButton":
+        case "pro":
             // console.log("Eens");
             addUserVote("pro")
             goToNextStatement();
             break;
-        case "neitherButton":
+        case "neither":
             // console.log("Geen van beide");
-            addUserVote("geen");
+            addUserVote("neither");
             goToNextStatement();
             break;
-        case "contraButton":
+        case "contra":
             // console.log("Oneens");
             addUserVote("contra");
             goToNextStatement();
             break;
-        case "skipButton":
+        case "skip":
             // console.log("Sla deze vraag over");
             addUserVote("");
             goToNextStatement();
@@ -95,11 +103,16 @@ function switchStatement() {
         default:
             break;
     }
-    // console.log(subjects);
+    console.log(subjects);
 }
 
-// Go to the next statement
+// Go to the next statement/container
 function goToNextStatement() {
+    checkVote();
+    /**
+     * als de currentContainer de statementsContainer (1) is en currentSubject is hetzelfde als het aantal subjects
+     * dan wordt currentContainer met 1 opgehoogd, zodat het partyContainer (2) wordt
+     */
     if (currentContainer == 1 && currentSubject == (subjects.length - 1)) {
         currentContainer++;
         changeView();
@@ -114,14 +127,9 @@ function goToNextStatement() {
     console.log("currentContainer: " + currentContainer)
 }
 
-// Go back to the previous statement
+// Go back to the previous statement/container
 function goToPreviousStatement() {
-    /**
-     * deze functie wordt gebruikt op de "Ga terug"-knop
-     * de "Ga terug"-knop wordt weergegeven in de statementsContainer
-     * de "Ga terug"-knop wordt gebruikt om te kunnen navigeren tussen de statements (door naar de vorige statement(s) te gaan)
-     * 
-     */
+    checkVote();
     if (currentSubject > 0 && currentContainer == 1) {
         currentSubject--;
         
@@ -136,6 +144,11 @@ function goToPreviousStatement() {
 
         // changeView();
     } else if (currentSubject == (subjects.length - 1) && currentContainer == 2) {
+        /**
+         * als currentSubject hetzelfde is als het aantal subjects en de currentContainer is de partyContainer (2)
+         * dan wordt currentContainer met 1 verlaagd (zodat je in de statementsContainer komt)
+         * en wordt met changeView() de view aangepast
+         */
         currentContainer--;
 
         changeView();
@@ -148,6 +161,16 @@ function goToPreviousStatement() {
 function addUserVote(vote) {
     subjects[currentSubject].vote = vote;
 }
+
+
+function checkVote() {
+    buttons.forEach(element => {
+        if (element.id == subjects[currentSubject].vote) {
+            element.style.backgroundColor = "blue";
+        }
+    });
+}
+
 
 
 /**
