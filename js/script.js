@@ -164,11 +164,30 @@ function addUserVote(vote) {
 
 
 function checkVote() {
+    // buttons.forEach(element => {
+    //     if (element.id == subjects[currentSubject].vote) {
+    //         element.style.backgroundColor = "blue";
+    //     } else {
+    //         element.style.backgroundColor = "";
+    //     }
+    // });
+
+    // console.log(subjects)
+
+    subjects.forEach(subject => {
+        console.log(subject.vote)
+    })
+
+
     buttons.forEach(element => {
-        if (element.id == subjects[currentSubject].vote) {
-            element.style.backgroundColor = "blue";
-        }
-    });
+        subjects.forEach(subject => {
+            if (subject.vote == element.id) {
+                element.style.backgroundColor = "blue";
+            } else {
+                element.style.backgroundColor = "";
+            }
+        })
+    })
 }
 
 
