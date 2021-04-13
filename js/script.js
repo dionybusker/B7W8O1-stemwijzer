@@ -164,44 +164,44 @@ function addUserVote(vote) {
 
 
 function checkVote() {
-    // buttons.forEach(element => {
-    //     if (element.id == subjects[currentSubject].vote) {
-    //         element.style.backgroundColor = "blue";
-    //     } else {
-    //         element.style.backgroundColor = "";
-    //     }
-    // });
+    buttons.forEach(element => {
+        if (subjects[currentSubject].vote != "" && element.id == subjects[currentSubject].vote) {
+            element.style.backgroundColor = "blue";
+        } else {
+            element.style.backgroundColor = "";
+        }
+    });
 
     // console.log(subjects)
 
     subjects.forEach(subject => {
-        console.log(subject.vote)
+        console.log("**" + subject.title + ": " + subject.vote)
     })
 
-
-    buttons.forEach(element => {
-        subjects.forEach(subject => {
-            if (subject.vote == element.id) {
-                element.style.backgroundColor = "blue";
-            } else {
-                element.style.backgroundColor = "";
-            }
-        })
-    })
+    // buttons.forEach(element => { // wordt hierdoor steeds de laatst gekozen button gepakt?
+    //     subjects.forEach(subject => { // zorgt dit ervoor dat de kleur wordt weergegeven nadat de laatste statement een vote heeft?
+    //         if (subject.vote == element.id) {
+    //             element.style.backgroundColor = "blue";
+    //         } else {
+    //             element.style.backgroundColor = "";
+    //         }
+    //     })
+    // })
 }
 
 
 
 /**
- * startContainer       => 0
- * statementContainer   => 1
- * partyContainer       => 2
+ * op het moment wordt de laatste vote genomen en wordt hiermee de kleur van de button aangepast
+ * daarbij wordt de kleur ook pas weergegeven zodra je voorbij de laatste statement bent geweest
  * 
- * currentSubject kan 0, 1, 2 of 3 zijn (met de huidige testdata)
+ * !!!
+ *  alle data wordt meteen weergegeven (in console) en alles heeft standaard "undefined"
+ *  als de laatste statement al een vote waarde krijgt dan wordt hiervan ook meteen die button gekleurd
+ *  dus alleen de vote van de laatste statement wordt gebruikt
+ * !!!
  * 
- * op basis van de "Ga terug"-knop:
- *   als currentSubject 0 is EN de currentContainer is 1 (statementContainer)
- *     dan wordt currentContainer met 1 verminderd (currentContainer--)
- * 
+ * het is de bedoeling dat de vote wordt onthouden en wordt vergeleken op de plek waar je nu zit
+ * als je dan een statement teruggaat, dan wordt die vote onthouden en wordt de kleur op de knop weergegeven
  * 
  */
