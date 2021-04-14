@@ -108,7 +108,7 @@ function switchStatement() {
 
 // Go to the next statement/container
 function goToNextStatement() {
-    checkVote();
+    
     /**
      * als de currentContainer de statementsContainer (1) is en currentSubject is hetzelfde als het aantal subjects
      * dan wordt currentContainer met 1 opgehoogd, zodat het partyContainer (2) wordt
@@ -116,11 +116,13 @@ function goToNextStatement() {
     if (currentContainer == 1 && currentSubject == (subjects.length - 1)) {
         currentContainer++;
         changeView();
+        checkVote();
     }
 
     if (currentSubject < (subjects.length - 1)) {
         currentSubject++;
         viewContent(currentSubject);
+        checkVote();
     }
 
     console.log("currentSubject: " + currentSubject)
@@ -129,10 +131,10 @@ function goToNextStatement() {
 
 // Go back to the previous statement/container
 function goToPreviousStatement() {
-    checkVote();
+    
     if (currentSubject > 0 && currentContainer == 1) {
         currentSubject--;
-        
+        checkVote();
         viewContent(currentSubject);
     } else if (currentSubject == 0 && currentContainer == 1) {
         currentContainer--;
