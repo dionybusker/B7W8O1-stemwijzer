@@ -12,7 +12,6 @@ const buttons = document.querySelectorAll(".buttons");
 var currentSubject = 0;
 var currentContainer = 0; // Always start with startContainer (0)
 
-/* ik moet dit nog een keer uit zien te voeren zodra de startContainer weer zichtbaar is en de statementContainer is verborgen */
 startButton.onclick = changeView;
 
 buttons.forEach(element => {
@@ -70,10 +69,6 @@ function viewContent(currentSubject) {
 // Switch between multiple statements
 function switchStatement() {
     console.log(this.id + " button");
-
-    // if (this.id == subjects[currentSubject].vote) {
-    //     console.log("test")
-    // }
 
     switch (this.id) {
         case "goBackButton":
@@ -143,8 +138,6 @@ function goToPreviousStatement() {
         hide(goBackButton);
         hide(partyContainer);
         show(startContainer);
-
-        // changeView();
     } else if (currentSubject == (subjects.length - 1) && currentContainer == 2) {
         /**
          * als currentSubject hetzelfde is als het aantal subjects en de currentContainer is de partyContainer (2)
@@ -174,36 +167,7 @@ function checkVote() {
         }
     });
 
-    // console.log(subjects)
-
-    subjects.forEach(subject => {
-        console.log("**" + subject.title + ": " + subject.vote)
-    })
-
-    // buttons.forEach(element => { // wordt hierdoor steeds de laatst gekozen button gepakt?
-    //     subjects.forEach(subject => { // zorgt dit ervoor dat de kleur wordt weergegeven nadat de laatste statement een vote heeft?
-    //         if (subject.vote == element.id) {
-    //             element.style.backgroundColor = "blue";
-    //         } else {
-    //             element.style.backgroundColor = "";
-    //         }
-    //     })
+    // subjects.forEach(subject => {
+    //     console.log("**" + subject.title + ": " + subject.vote)
     // })
 }
-
-
-
-/**
- * op het moment wordt de laatste vote genomen en wordt hiermee de kleur van de button aangepast
- * daarbij wordt de kleur ook pas weergegeven zodra je voorbij de laatste statement bent geweest
- * 
- * !!!
- *  alle data wordt meteen weergegeven (in console) en alles heeft standaard "undefined"
- *  als de laatste statement al een vote waarde krijgt dan wordt hiervan ook meteen die button gekleurd
- *  dus alleen de vote van de laatste statement wordt gebruikt
- * !!!
- * 
- * het is de bedoeling dat de vote wordt onthouden en wordt vergeleken op de plek waar je nu zit
- * als je dan een statement teruggaat, dan wordt die vote onthouden en wordt de kleur op de knop weergegeven
- * 
- */
