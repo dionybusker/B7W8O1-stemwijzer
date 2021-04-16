@@ -68,7 +68,7 @@ function viewContent(currentSubject) {
 
 // Switch between multiple statements
 function switchStatement() {
-    console.log(this.id + " button");
+    // console.log(this.id + " button");
 
     switch (this.id) {
         case "goBackButton":
@@ -98,7 +98,7 @@ function switchStatement() {
         default:
             break;
     }
-    console.log(subjects);
+    // console.log(subjects);
 }
 
 // Go to the next statement/container
@@ -112,6 +112,7 @@ function goToNextStatement() {
         currentContainer++;
         changeView();
         checkVote();
+        compareVotes();
     }
 
     if (currentSubject < (subjects.length - 1)) {
@@ -120,13 +121,12 @@ function goToNextStatement() {
         checkVote();
     }
 
-    console.log("currentSubject: " + currentSubject)
-    console.log("currentContainer: " + currentContainer)
+    // console.log("currentSubject: " + currentSubject)
+    // console.log("currentContainer: " + currentContainer)
 }
 
 // Go back to the previous statement/container
 function goToPreviousStatement() {
-    
     if (currentSubject > 0 && currentContainer == 1) {
         currentSubject--;
         checkVote();
@@ -149,8 +149,8 @@ function goToPreviousStatement() {
         changeView();
     }
 
-    console.log("currentSubject: " + currentSubject)
-    console.log("currentContainer: " + currentContainer)
+    // console.log("currentSubject: " + currentSubject)
+    // console.log("currentContainer: " + currentContainer)
 }
 
 function addUserVote(vote) {
@@ -171,3 +171,67 @@ function checkVote() {
     //     console.log("**" + subject.title + ": " + subject.vote)
     // })
 }
+
+// de votes van de gebruiker moeten worden vergeleken met de votes van de partijen
+// function compareVotes() {
+//     if (currentContainer == 2) {
+//         subjects.forEach(subject => {
+//             console.log(subject.title + ' - ' + subject.vote);
+
+//             // console.log(subject.parties)
+
+//             subject.parties.forEach(subjectParty => {
+//                 console.log(subjectParty)
+
+//                 if (subject.vote == subjectParty.position) {
+//                     // console.log("test")
+                    
+//                     parties.forEach(party => {
+//                         if (party.name == subjectParty.name) {
+//                             console.log("test")
+//                             party.points = 0;
+//                             party.points++;
+//                         }
+//                     })
+//                 }
+//             })
+//         });
+//     }
+//     console.log(parties)
+// }
+
+function compareVotes() {
+    if (currentContainer == 2) { // er moet gecontroleerd worden in welke currentContainer je zit (dit moet 2 - partyContainer zijn)
+        subjects.forEach(subject => { // alle subjects moeten af worden gegaan zodat je per statement kan controleren waarop gestemd is
+            console.log(subject.title + ' - ' + subject.vote);
+
+            subject.parties.forEach(subjectParty => { // de partijen die onder de subjects staan moeten af worden gegaan om te kijken per statement waar de betreffende partijen op hebben gestemd
+                console.log(subjectParty);
+
+                if (subject.vote == subjectParty.position) { // vervolgens moeten de votes van de gebruiker vergeleken worden met de votes van de partijen
+                    addPointsToParties(subjectParty); // zodra er een vote gelijk is aan elkaar moeten er punten worden opgeteld (andere functie)
+                }
+            });
+        });
+    }
+    console.log(parties)
+}
+
+function addPointsToParties(subjectParty) {
+    parties.forEach(party => {
+        if (party.name == subjectParty.name) {
+            party.points = 0;
+            party.points++;
+
+        }
+    })
+}
+
+/**
+ * er moet gecontroleerd worden in welke currentContainer je zit (dit moet 2 - partyContainer zijn)
+ *   alle subjects moeten af worden gegaan zodat je per statement kan controleren waarop gestemd is
+ *     de partijen die onder de subjects staan moeten af worden gegaan om te kijken per statement waar de betreffende partijen op hebben gestemd
+ *       vervolgens moeten de votes van de gebruiker vergeleken worden met de votes van de partijen
+ *         zodra er een vote gelijk is aan elkaar moeten er punten worden opgeteld (andere functie)
+ *     
+ */
