@@ -18,6 +18,11 @@ buttons.forEach(element => {
     element.onclick = switchStatement;
 });
 
+// give each party array a new value "points"
+parties.forEach(party => {
+    party.points = 0;
+})
+
 // Add Bootstrap class "d-none"
 function hide(element) {
     element.classList.add("d-none");
@@ -173,33 +178,6 @@ function checkVote() {
 }
 
 // de votes van de gebruiker moeten worden vergeleken met de votes van de partijen
-// function compareVotes() {
-//     if (currentContainer == 2) {
-//         subjects.forEach(subject => {
-//             console.log(subject.title + ' - ' + subject.vote);
-
-//             // console.log(subject.parties)
-
-//             subject.parties.forEach(subjectParty => {
-//                 console.log(subjectParty)
-
-//                 if (subject.vote == subjectParty.position) {
-//                     // console.log("test")
-                    
-//                     parties.forEach(party => {
-//                         if (party.name == subjectParty.name) {
-//                             console.log("test")
-//                             party.points = 0;
-//                             party.points++;
-//                         }
-//                     })
-//                 }
-//             })
-//         });
-//     }
-//     console.log(parties)
-// }
-
 function compareVotes() {
     if (currentContainer == 2) { // er moet gecontroleerd worden in welke currentContainer je zit (dit moet 2 - partyContainer zijn)
         subjects.forEach(subject => { // alle subjects moeten af worden gegaan zodat je per statement kan controleren waarop gestemd is
@@ -220,18 +198,10 @@ function compareVotes() {
 function addPointsToParties(subjectParty) {
     parties.forEach(party => {
         if (party.name == subjectParty.name) {
-            party.points = 0;
+            // party.points = 0;
             party.points++;
 
         }
     })
 }
 
-/**
- * er moet gecontroleerd worden in welke currentContainer je zit (dit moet 2 - partyContainer zijn)
- *   alle subjects moeten af worden gegaan zodat je per statement kan controleren waarop gestemd is
- *     de partijen die onder de subjects staan moeten af worden gegaan om te kijken per statement waar de betreffende partijen op hebben gestemd
- *       vervolgens moeten de votes van de gebruiker vergeleken worden met de votes van de partijen
- *         zodra er een vote gelijk is aan elkaar moeten er punten worden opgeteld (andere functie)
- *     
- */
