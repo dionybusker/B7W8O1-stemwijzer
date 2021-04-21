@@ -7,6 +7,7 @@ const goBackButton = document.getElementById("goBackButton");
 const title = document.getElementById("title");
 const statement = document.getElementById("statement");
 const buttons = document.querySelectorAll(".buttons");
+const partyName = document.getElementById("partyName");
 
 // Variables
 var currentSubject = 0;
@@ -57,7 +58,8 @@ function changeView() {
     }
     
     viewContent(currentSubject);
-    
+    viewPartiesOnScreen();
+
     // console.log("startButton: " + startButton);
     // console.log(currentSubject);
     console.log("currentContainer: " + currentContainer);
@@ -177,7 +179,7 @@ function checkVote() {
     // })
 }
 
-// de votes van de gebruiker moeten worden vergeleken met de votes van de partijen
+// Compare the user's votes with the votes of the parties
 function compareVotes() {
     if (currentContainer == 2) { // er moet gecontroleerd worden in welke currentContainer je zit (dit moet 2 - partyContainer zijn)
         subjects.forEach(subject => { // alle subjects moeten af worden gegaan zodat je per statement kan controleren waarop gestemd is
@@ -200,8 +202,16 @@ function addPointsToParties(subjectParty) {
         if (party.name == subjectParty.name) {
             // party.points = 0;
             party.points++;
-
         }
-    })
+    });
 }
 
+function viewPartiesOnScreen() {
+    if (currentContainer == 2) {
+        parties.forEach(party => {
+            var li = document.createElement("li");
+            li.innerHTML += party.name + ", " + party.points + " punten";
+            partyName.appendChild(li);
+        });
+    }
+}
