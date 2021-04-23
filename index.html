@@ -13,6 +13,7 @@
 </head>
 <body>
     
+    <!-- currentContainer => 0 (startContainer) -->
     <div id="startContainer">
         <h1>StemWijzer</h1>
         <p>Dit is een stemwijzer.</p>
@@ -21,7 +22,9 @@
     </div>
 
     <button id="goBackButton" class="buttons d-none">Ga terug</button>
+    <button id="nextStepButton" class="buttons d-none">Volgende stap</button>
 
+    <!-- currentContainer => 1 (statementContainer) -->
     <div id="statementContainer" class="d-none">
         <h1 id="title">Titel</h1>
         <p id="statement">Statement</p>
@@ -32,7 +35,20 @@
         <button id="skip" class="buttons">Sla deze vraag over</button>
     </div>
 
-    <div id="partyContainer" class="d-none">
+    <!-- currentContainer => 2 (importantStatementsContainer) -->
+    <div id="importantStatementsContainer" class="d-none">
+        <h1>Belangrijke stellingen</h1>
+        <p>Hier moet de gebruiker stellingen kiezen die hij/zij belangrijk vindt.</p>
+    </div>
+
+    <!-- currentContainer => 3 (importantPartiesContainer) -->
+    <div id="importantPartiesContainer" class="d-none">
+        <h1>Belangrijke partijen</h1>
+        <p>Hier moet de gebruiker partijen kiezen die hij/zij belangrijk vindt.</p>
+    </div>
+
+    <!-- currentContainer => 4 (resultContainer) -->
+    <div id="resultContainer" class="d-none">
         <h1>Partijen</h1>
         <ul id="partyName"></ul>
     </div>

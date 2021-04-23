@@ -1,9 +1,15 @@
 // Constants
 const startContainer = document.getElementById("startContainer");
 const statementContainer = document.getElementById("statementContainer");
-const partyContainer = document.getElementById("partyContainer");
+const importantStatementsContainer = document.getElementById("importantStatementsContainer");
+const importantPartiesContainer = document.getElementById("importantPartiesContainer");
+const resultContainer = document.getElementById("resultContainer");
+
+
 const startButton = document.getElementById("startButton");
 const goBackButton = document.getElementById("goBackButton");
+const nextStepButton = document.getElementById("nextStepButton");
+
 const title = document.getElementById("title");
 const statement = document.getElementById("statement");
 const buttons = document.querySelectorAll(".buttons");
@@ -51,10 +57,19 @@ function changeView() {
         currentContainer++;
     } else if (currentContainer == 1) {
         show(statementContainer);
-        hide(partyContainer);
+        hide(resultContainer);
     } else if (currentContainer == 2) {
         hide(statementContainer);
-        show(partyContainer);
+        show(importantStatementsContainer);
+        show(nextStepButton);
+    } else if (currentContainer == 3) {
+        hide(importantStatementsContainer);
+        show(importantPartiesContainer);
+        show(nextStepButton);
+    } else if (currentContainer == 4) {
+        hide(importantPartiesContainer);
+        hide(nextStepButton);
+        show(resultContainer);
         compareVotes();
         viewPartiesOnScreen();
     }
@@ -103,25 +118,29 @@ function switchStatement() {
             addUserVote("");
             goToNextStatement();
             break;
+        case "nextStepButton":
+            goToNextContainer();
+            break;
         default:
             break;
     }
     // console.log(subjects);
 }
 
-// Go to the next statement/container
-function goToNextStatement() {
-    
-    /**
-     * als de currentContainer de statementsContainer (1) is en currentSubject is hetzelfde als het aantal subjects
-     * dan wordt currentContainer met 1 opgehoogd, zodat het partyContainer (2) wordt
-     */
+function goToNextContainer() {
     if (currentContainer == 1 && currentSubject == (subjects.length - 1)) {
         currentContainer++;
         changeView();
         checkVote();
-        
+    } else if (currentContainer == 2 || currentContainer == 3) {
+        currentContainer++;
+        changeView();
     }
+}
+
+// Go to the next statement/container
+function goToNextStatement() {
+     goToNextContainer();
 
     if (currentSubject < (subjects.length - 1)) {
         currentSubject++;
@@ -144,16 +163,23 @@ function goToPreviousStatement() {
 
         hide(statementContainer);
         hide(goBackButton);
-        hide(partyContainer);
+        
+        hide(resultContainer);
         show(startContainer);
     } else if (currentSubject == (subjects.length - 1) && currentContainer == 2) {
         /**
-         * als currentSubject hetzelfde is als het aantal subjects en de currentContainer is de partyContainer (2)
+         * als currentSubject hetzelfde is als het aantal subjects en de currentContainer is de importantStatementsContainer (2)
          * dan wordt currentContainer met 1 verlaagd (zodat je in de statementsContainer komt)
          * en wordt met changeView() de view aangepast
          */
         currentContainer--;
-
+        hide(importantStatementsContainer);
+        hide(nextStepButton);
+        changeView();
+    } else if (currentContainer == 3 || currentContainer || 4) {
+        currentContainer--;
+        hide(importantPartiesContainer);
+        hide(resultContainer);
         changeView();
     }
 
@@ -182,15 +208,13 @@ function checkVote() {
 
 // Compare the user's votes with the votes of the parties
 function compareVotes() {
-    // if (currentContainer == 2) { // er moet gecontroleerd worden in welke currentContainer je zit (dit moet 2 - partyContainer zijn)
-        subjects.forEach(subject => {
-            subject.parties.forEach(subjectParty => {
-                if (subject.vote == subjectParty.position) {
-                    addPointsToParties(subjectParty);
-                }
-            });
+    subjects.forEach(subject => {
+        subject.parties.forEach(subjectParty => {
+            if (subject.vote == subjectParty.position) {
+                addPointsToParties(subjectParty);
+            }
         });
-    // }
+    });
     console.log(parties)
 }
 
@@ -204,13 +228,13 @@ function addPointsToParties(subjectParty) {
 }
 
 function viewPartiesOnScreen() {
-    if (currentContainer == 2) {
+    if (currentContainer == 4) {
         parties.sort((partyA, partyB) => partyB.points - partyA.points);
         
         parties.forEach(party => {
             var li = document.createElement("li");
                 li.innerHTML += party.name + ", " + party.points + " punten";
-                
+
             partyName.appendChild(li);
         });
     }
