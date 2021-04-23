@@ -55,10 +55,11 @@ function changeView() {
     } else if (currentContainer == 2) {
         hide(statementContainer);
         show(partyContainer);
+        compareVotes();
+        viewPartiesOnScreen();
     }
     
     viewContent(currentSubject);
-    viewPartiesOnScreen();
 
     // console.log("startButton: " + startButton);
     // console.log(currentSubject);
@@ -119,7 +120,7 @@ function goToNextStatement() {
         currentContainer++;
         changeView();
         checkVote();
-        compareVotes();
+        
     }
 
     if (currentSubject < (subjects.length - 1)) {
@@ -181,19 +182,15 @@ function checkVote() {
 
 // Compare the user's votes with the votes of the parties
 function compareVotes() {
-    if (currentContainer == 2) { // er moet gecontroleerd worden in welke currentContainer je zit (dit moet 2 - partyContainer zijn)
-        subjects.forEach(subject => { // alle subjects moeten af worden gegaan zodat je per statement kan controleren waarop gestemd is
-            console.log(subject.title + ' - ' + subject.vote);
-
-            subject.parties.forEach(subjectParty => { // de partijen die onder de subjects staan moeten af worden gegaan om te kijken per statement waar de betreffende partijen op hebben gestemd
-                console.log(subjectParty);
-
-                if (subject.vote == subjectParty.position) { // vervolgens moeten de votes van de gebruiker vergeleken worden met de votes van de partijen
-                    addPointsToParties(subjectParty); // zodra er een vote gelijk is aan elkaar moeten er punten worden opgeteld (andere functie)
+    // if (currentContainer == 2) { // er moet gecontroleerd worden in welke currentContainer je zit (dit moet 2 - partyContainer zijn)
+        subjects.forEach(subject => {
+            subject.parties.forEach(subjectParty => {
+                if (subject.vote == subjectParty.position) {
+                    addPointsToParties(subjectParty);
                 }
             });
         });
-    }
+    // }
     console.log(parties)
 }
 
@@ -208,9 +205,12 @@ function addPointsToParties(subjectParty) {
 
 function viewPartiesOnScreen() {
     if (currentContainer == 2) {
+        parties.sort((partyA, partyB) => partyB.points - partyA.points);
+        
         parties.forEach(party => {
             var li = document.createElement("li");
-            li.innerHTML += party.name + ", " + party.points + " punten";
+                li.innerHTML += party.name + ", " + party.points + " punten";
+                
             partyName.appendChild(li);
         });
     }
