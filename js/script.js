@@ -26,9 +26,9 @@ buttons.forEach(element => {
 });
 
 // give each party array a new value "points"
-parties.forEach(party => {
-    party.points = 0;
-})
+// parties.forEach(party => {
+//     party.points = 0;
+// })
 
 // Add Bootstrap class "d-none"
 function hide(element) {
@@ -208,6 +208,9 @@ function checkVote() {
 
 // Compare the user's votes with the votes of the parties
 function compareVotes() {
+    parties.forEach(party => {
+        party.points = 0;
+    });
     subjects.forEach(subject => {
         subject.parties.forEach(subjectParty => {
             if (subject.vote == subjectParty.position) {
@@ -234,7 +237,7 @@ function viewPartiesOnScreen() {
         parties.forEach(party => {
             var li = document.createElement("li");
                 li.innerHTML += party.name + ", " + party.points + " punten";
-
+            
             partyName.appendChild(li);
         });
     }
