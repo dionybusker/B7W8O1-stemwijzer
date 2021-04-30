@@ -231,6 +231,10 @@ function addPointsToParties(subjectParty) {
 }
 
 function viewPartiesOnScreen() {
+    while (partyName.firstChild) {
+        partyName.removeChild(partyName.firstChild);
+    }
+    
     if (currentContainer == 4) {
         parties.sort((partyA, partyB) => partyB.points - partyA.points);
         
