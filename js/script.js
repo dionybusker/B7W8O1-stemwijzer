@@ -5,7 +5,6 @@ const importantStatementsContainer = document.getElementById("importantStatement
 const importantPartiesContainer = document.getElementById("importantPartiesContainer");
 const resultContainer = document.getElementById("resultContainer");
 
-
 const startButton = document.getElementById("startButton");
 const goBackButton = document.getElementById("goBackButton");
 const nextStepButton = document.getElementById("nextStepButton");
@@ -66,10 +65,13 @@ function changeView() {
         hide(importantStatementsContainer);
         show(importantPartiesContainer);
         show(nextStepButton);
+
+        createCheckbox();
     } else if (currentContainer == 4) {
         hide(importantPartiesContainer);
         hide(nextStepButton);
         show(resultContainer);
+        
         compareVotes();
         viewPartiesOnScreen();
     }
@@ -234,7 +236,7 @@ function viewPartiesOnScreen() {
     while (partyName.firstChild) {
         partyName.removeChild(partyName.firstChild);
     }
-    
+
     if (currentContainer == 4) {
         parties.sort((partyA, partyB) => partyB.points - partyA.points);
         
@@ -245,4 +247,19 @@ function viewPartiesOnScreen() {
             partyName.appendChild(li);
         });
     }
+}
+
+function createCheckbox() {
+    var checkbox = document.createElement("input");
+        checkbox.type = "checkbox";
+        checkbox.name = "name";
+        checkbox.value = "value";
+        checkbox.id = "id";
+
+    var label = document.createElement("label");
+        label.htmlFor = "id";
+        label.appendChild(document.createTextNode("Label for checkbox"));
+    
+    importantPartiesContainer.appendChild(checkbox);
+    importantPartiesContainer.appendChild(label);
 }
