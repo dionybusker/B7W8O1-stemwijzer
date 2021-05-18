@@ -245,9 +245,7 @@ function addPointsToParties(subjectParty) {
 }
 
 function viewPartiesOnScreen() {
-    while (partyName.firstChild) {
-        partyName.removeChild(partyName.firstChild);
-    }
+    removeChild(partyName);
 
     if (currentContainer == 4) {
         parties.sort((partyA, partyB) => partyB.points - partyA.points);
@@ -281,13 +279,17 @@ function createCheckbox(subject) {
 }
 
 function viewStatementWithCheckbox() {
-    while (subjectTitle.firstChild) {
-        subjectTitle.removeChild(subjectTitle.firstChild);
-    }
+    removeChild(subjectTitle);
 
     if (currentContainer == 2) {
         subjects.forEach(subject => {
             createCheckbox(subject);
         });
+    }
+}
+
+function removeChild(child) {
+    while (child.firstChild) {
+        child.removeChild(child.firstChild);
     }
 }
