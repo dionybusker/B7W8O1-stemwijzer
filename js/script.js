@@ -15,6 +15,8 @@ const buttons = document.querySelectorAll(".buttons");
 const partyName = document.getElementById("partyName");
 const subjectTitle = document.getElementById("subjectTitle");
 
+
+
 // Variables
 var currentSubject = 0;
 var currentContainer = 0; // Always start with startContainer (0)
@@ -29,6 +31,10 @@ buttons.forEach(element => {
 // parties.forEach(party => {
 //     party.points = 0;
 // })
+
+subjects.forEach(subject => {
+    subject.important = false;
+});
 
 // Add Bootstrap class "d-none"
 function hide(element) {
@@ -71,6 +77,8 @@ function changeView() {
 
         // createCheckbox();
     } else if (currentContainer == 4) {
+        const checkboxes = document.querySelectorAll("input[name='subject']:checked");
+        
         hide(importantPartiesContainer);
         hide(nextStepButton);
         show(resultContainer);
@@ -80,6 +88,11 @@ function changeView() {
 
         // var x = document.getElementById("Bindend referendum").checked;
         // console.log(x)
+
+        checkboxes.forEach(checkbox => {
+            console.log(checkbox.value);
+        })
+        // console.log(checkboxes)
     }
     
     viewContent(currentSubject);
@@ -224,6 +237,10 @@ function compareVotes() {
             if (subject.vote == subjectParty.position) {
                 addPointsToParties(subjectParty);
             }
+
+            // if (subject.important == true) {
+            //     addPointsToParties(subjectParty);
+            // }
         });
     });
     console.log(parties)
@@ -265,6 +282,7 @@ function createCheckbox(subject) {
     var checkbox = document.createElement("input");
         checkbox.type = "checkbox";
         checkbox.name = "subject";
+        checkbox.className = "statementCheckboxes";
         checkbox.value = subject.title;
         checkbox.id = subject.title;
 
@@ -293,3 +311,13 @@ function removeChild(child) {
         child.removeChild(child.firstChild);
     }
 }
+
+// functie toevoegen waarin er wordt gecheckt of er op de checkbox is gedrukt
+// als er op een checkbox is gedrukt dan wordt er bij de bijbehorende statement een nieuwe key:value toegevoegd -> important = true
+// deze staat standaard op false
+// wanneer het true is dan wordt er een extra punt toegevoegd
+
+
+// function checkStatementImportance() {
+    
+// }
