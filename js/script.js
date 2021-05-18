@@ -13,6 +13,7 @@ const title = document.getElementById("title");
 const statement = document.getElementById("statement");
 const buttons = document.querySelectorAll(".buttons");
 const partyName = document.getElementById("partyName");
+const subjectTitle = document.getElementById("subjectTitle");
 
 // Variables
 var currentSubject = 0;
@@ -61,12 +62,14 @@ function changeView() {
         hide(statementContainer);
         show(importantStatementsContainer);
         show(nextStepButton);
+
+        viewStatementWithCheckbox();
     } else if (currentContainer == 3) {
         hide(importantStatementsContainer);
         show(importantPartiesContainer);
         show(nextStepButton);
 
-        createCheckbox();
+        // createCheckbox();
     } else if (currentContainer == 4) {
         hide(importantPartiesContainer);
         hide(nextStepButton);
@@ -249,17 +252,33 @@ function viewPartiesOnScreen() {
     }
 }
 
-function createCheckbox() {
+function createCheckbox(subject) {
+    var div = document.createElement("div");
+
     var checkbox = document.createElement("input");
         checkbox.type = "checkbox";
         checkbox.name = "name";
         checkbox.value = "value";
-        checkbox.id = "id";
+        checkbox.id = subject.title;
 
     var label = document.createElement("label");
-        label.htmlFor = "id";
-        label.appendChild(document.createTextNode("Label for checkbox"));
+        label.htmlFor = subject.title;
+        label.appendChild(document.createTextNode(subject.title));
+
+    div.appendChild(checkbox);
+    div.appendChild(label);
     
-    importantPartiesContainer.appendChild(checkbox);
-    importantPartiesContainer.appendChild(label);
+    subjectTitle.appendChild(div);
+}
+
+function viewStatementWithCheckbox() {
+    while (subjectTitle.firstChild) {
+        subjectTitle.removeChild(subjectTitle.firstChild);
+    }
+
+    if (currentContainer == 2) {
+        subjects.forEach(subject => {
+            createCheckbox(subject);
+        });
+    }
 }
