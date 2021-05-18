@@ -77,6 +77,9 @@ function changeView() {
         
         compareVotes();
         viewPartiesOnScreen();
+
+        // var x = document.getElementById("Bindend referendum").checked;
+        // console.log(x)
     }
     
     viewContent(currentSubject);
@@ -231,6 +234,12 @@ function addPointsToParties(subjectParty) {
         if (party.name == subjectParty.name) {
             // party.points = 0;
             party.points++;
+
+            /**
+             * als een statement wordt aangevinkt voor meer weging in de punten 
+             * dan moet hier een extra punt gegeven worden op basis van of een 
+             * checkbox is aangevinkt of niet
+             */
         }
     });
 }
@@ -257,8 +266,8 @@ function createCheckbox(subject) {
 
     var checkbox = document.createElement("input");
         checkbox.type = "checkbox";
-        checkbox.name = "name";
-        checkbox.value = "value";
+        checkbox.name = "subject";
+        checkbox.value = subject.title;
         checkbox.id = subject.title;
 
     var label = document.createElement("label");
