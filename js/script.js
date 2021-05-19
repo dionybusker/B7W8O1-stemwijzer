@@ -272,23 +272,28 @@ function viewPartiesOnScreen() {
     }
 }
 
-function createCheckbox(subject) {
+/**
+ * in de object parameter wordt subjects van functie viewStatementWithCheckbox en 
+ * options van viewPartySelectionWithCheckbox meegegeven
+ * 
+ */
+function createCheckbox(object) {
     var div = document.createElement("div");
 
     var checkbox = document.createElement("input");
         checkbox.type = "checkbox";
-        checkbox.name = "subject";
+        checkbox.name = "object";
         checkbox.className = "statementCheckboxes";
-        checkbox.value = subject.title;
-        checkbox.id = subject.title;
+        checkbox.value = object.title;
+        checkbox.id = object.title;
 
     var label = document.createElement("label");
-        label.htmlFor = subject.title;
-        label.appendChild(document.createTextNode(subject.title));
+        label.htmlFor = object.title;
+        label.appendChild(document.createTextNode(object.title));
 
     div.appendChild(checkbox);
     div.appendChild(label);
-    
+
     if (currentContainer == 2) {
         subjectTitle.appendChild(div);
     }
@@ -321,9 +326,9 @@ function viewPartySelectionWithCheckbox() {
 
 // instellen dat de gebruiker alleen grote partijen, of alleen seculiere partijen wilt zien
 // niks aangevinkt betekent alle partijen inzien
-function changeSettingForParties() {
-
-}
+// function changeSettingForParties() {
+//     doSomethingWithCheckbox();
+// }
 
 function removeChildNode(childNode) {
     while (childNode.firstChild) {
@@ -336,15 +341,22 @@ function checkStatementImportance() {
         subject.important = false;
     });
 
-    const checkboxes = document.querySelectorAll("input[name='subject']:checked");
-    
+    doSomethingWithCheckbox();
+}
+
+function doSomethingWithCheckbox() {
+    const checkboxes = document.querySelectorAll("input[name='object']:checked");
+
     checkboxes.forEach(checkbox => {
-        console.log(checkbox.value)
+        console.log(checkbox.value);
 
         subjects.forEach(subject => {
             if (subject.title == checkbox.value) {
                 subject.important = true;
             }
         });
+
+        
     });
 }
+
