@@ -306,9 +306,9 @@ function viewStatementWithCheckbox() {
     }
 }
 
-function removeChild(child) {
-    while (child.firstChild) {
-        child.removeChild(child.firstChild);
+function removeChild(childNode) {
+    while (childNode.firstChild) {
+        childNode.removeChild(childNode.firstChild);
     }
 }
 
