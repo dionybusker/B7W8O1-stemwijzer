@@ -14,8 +14,9 @@ const statement = document.getElementById("statement");
 const buttons = document.querySelectorAll(".buttons");
 const partyName = document.getElementById("partyName");
 const subjectTitle = document.getElementById("subjectTitle");
+const partySelection = document.getElementById("partySelection");
 
-
+const partySelectionOptions = [{"title": "Grote partijen"}, {"title": "Seculiere partijen"}];
 
 // Variables
 var currentSubject = 0;
@@ -76,6 +77,7 @@ function changeView() {
         show(nextStepButton);
 
         // createCheckbox();
+        viewPartySelectionWithCheckbox();
     } else if (currentContainer == 4) {
         // const checkboxes = document.querySelectorAll("input[name='subject']:checked");
         
@@ -256,7 +258,7 @@ function addPointsToParties(subjectParty) {
 }
 
 function viewPartiesOnScreen() {
-    removeChild(partyName);
+    removeChildNode(partyName);
 
     if (currentContainer == 4) {
         parties.sort((partyA, partyB) => partyB.points - partyA.points);
@@ -287,11 +289,17 @@ function createCheckbox(subject) {
     div.appendChild(checkbox);
     div.appendChild(label);
     
-    subjectTitle.appendChild(div);
+    if (currentContainer == 2) {
+        subjectTitle.appendChild(div);
+    }
+
+    if (currentContainer == 3) {
+        partySelection.appendChild(div);
+    }
 }
 
 function viewStatementWithCheckbox() {
-    removeChild(subjectTitle);
+    removeChildNode(subjectTitle);
 
     if (currentContainer == 2) {
         subjects.forEach(subject => {
@@ -300,7 +308,24 @@ function viewStatementWithCheckbox() {
     }
 }
 
-function removeChild(childNode) {
+function viewPartySelectionWithCheckbox() {
+    removeChildNode(partySelection);
+
+    if (currentContainer == 3) {
+        partySelectionOptions.forEach(option => {
+            createCheckbox(option);
+        });
+
+    }
+}
+
+// instellen dat de gebruiker alleen grote partijen, of alleen seculiere partijen wilt zien
+// niks aangevinkt betekent alle partijen inzien
+function changeSettingForParties() {
+
+}
+
+function removeChildNode(childNode) {
     while (childNode.firstChild) {
         childNode.removeChild(childNode.firstChild);
     }
@@ -313,7 +338,6 @@ function checkStatementImportance() {
 
     const checkboxes = document.querySelectorAll("input[name='subject']:checked");
     
-
     checkboxes.forEach(checkbox => {
         console.log(checkbox.value)
 
