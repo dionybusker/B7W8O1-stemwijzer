@@ -32,9 +32,9 @@ buttons.forEach(element => {
 //     party.points = 0;
 // })
 
-subjects.forEach(subject => {
-    subject.important = false;
-});
+// subjects.forEach(subject => {
+//     subject.important = false;
+// });
 
 // Add Bootstrap class "d-none"
 function hide(element) {
@@ -77,21 +77,22 @@ function changeView() {
 
         // createCheckbox();
     } else if (currentContainer == 4) {
-        const checkboxes = document.querySelectorAll("input[name='subject']:checked");
+        // const checkboxes = document.querySelectorAll("input[name='subject']:checked");
         
         hide(importantPartiesContainer);
         hide(nextStepButton);
         show(resultContainer);
         
+        checkStatementImportance();
         compareVotes();
         viewPartiesOnScreen();
 
         // var x = document.getElementById("Bindend referendum").checked;
         // console.log(x)
 
-        checkboxes.forEach(checkbox => {
-            console.log(checkbox.value);
-        })
+        // checkboxes.forEach(checkbox => {
+        //     console.log(checkbox.value);
+        // })
         // console.log(checkboxes)
     }
     
@@ -236,11 +237,11 @@ function compareVotes() {
         subject.parties.forEach(subjectParty => {
             if (subject.vote == subjectParty.position) {
                 addPointsToParties(subjectParty);
+                if (subject.important == true) {
+                    addPointsToParties(subjectParty);
+                }
             }
 
-            // if (subject.important == true) {
-            //     addPointsToParties(subjectParty);
-            // }
         });
     });
     console.log(parties)
@@ -318,6 +319,21 @@ function removeChild(childNode) {
 // wanneer het true is dan wordt er een extra punt toegevoegd
 
 
-// function checkStatementImportance() {
+function checkStatementImportance() {
+    subjects.forEach(subject => {
+        subject.important = false;
+    });
+
+    const checkboxes = document.querySelectorAll("input[name='subject']:checked");
     
-// }
+
+    checkboxes.forEach(checkbox => {
+        console.log(checkbox.value)
+
+        subjects.forEach(subject => {
+            if (subject.title == checkbox.value) {
+                subject.important = true;
+            }
+        });
+    });
+}
