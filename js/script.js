@@ -241,7 +241,6 @@ function compareVotes() {
                     addPointsToParties(subjectParty);
                 }
             }
-
         });
     });
     console.log(parties)
@@ -252,12 +251,6 @@ function addPointsToParties(subjectParty) {
         if (party.name == subjectParty.name) {
             // party.points = 0;
             party.points++;
-
-            /**
-             * als een statement wordt aangevinkt voor meer weging in de punten 
-             * dan moet hier een extra punt gegeven worden op basis van of een 
-             * checkbox is aangevinkt of niet
-             */
         }
     });
 }
@@ -312,12 +305,6 @@ function removeChild(childNode) {
         childNode.removeChild(childNode.firstChild);
     }
 }
-
-// functie toevoegen waarin er wordt gecheckt of er op de checkbox is gedrukt
-// als er op een checkbox is gedrukt dan wordt er bij de bijbehorende statement een nieuwe key:value toegevoegd -> important = true
-// deze staat standaard op false
-// wanneer het true is dan wordt er een extra punt toegevoegd
-
 
 function checkStatementImportance() {
     subjects.forEach(subject => {
