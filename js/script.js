@@ -18,6 +18,8 @@ const partySelection = document.getElementById("partySelection");
 
 const partySelectionOptions = [{"title": "Grote partijen"}, {"title": "Seculiere partijen"}];
 
+const partySize = 15;
+
 // Variables
 var currentSubject = 0;
 var currentContainer = 0; // Always start with startContainer (0)
@@ -86,6 +88,7 @@ function changeView() {
         show(resultContainer);
         
         checkStatementImportance();
+        changeSettingForParties();
         compareVotes();
         viewPartiesOnScreen();
 
@@ -264,10 +267,12 @@ function viewPartiesOnScreen() {
         parties.sort((partyA, partyB) => partyB.points - partyA.points);
         
         parties.forEach(party => {
-            var li = document.createElement("li");
-                li.innerHTML += party.name + ", " + party.points + " punten";
-            
-            partyName.appendChild(li);
+            if (party.display != false) {
+                var li = document.createElement("li");
+                    li.innerHTML += party.name + ", " + party.points + " punten";
+                
+                partyName.appendChild(li);
+            }
         });
     }
 }
@@ -326,9 +331,13 @@ function viewPartySelectionWithCheckbox() {
 
 // instellen dat de gebruiker alleen grote partijen, of alleen seculiere partijen wilt zien
 // niks aangevinkt betekent alle partijen inzien
-// function changeSettingForParties() {
-//     doSomethingWithCheckbox();
-// }
+function changeSettingForParties() {
+    parties.forEach(party => {
+        party.display = true;
+    });
+
+    doSomethingWithCheckbox();
+}
 
 function removeChildNode(childNode) {
     while (childNode.firstChild) {
@@ -356,7 +365,26 @@ function doSomethingWithCheckbox() {
             }
         });
 
-        
+        parties.forEach(party => {
+            if (checkbox.value == "Seculiere partijen") {
+                if (party.secular != true) {
+                    party.display = false;
+                }
+            }
+
+            if (checkbox.value == "Grote partijen") {
+                if (party.size < partySize) {
+                    party.display = false;
+                }
+            }
+        });
     });
 }
 
+/**
+ * Korte omschrijving wat de functie doet
+ * 
+ * @param {string} parameter (de naam van de param) - betekenis van de string
+ * @param {object} parameter (de naam van de param) - wat er in het object zit
+ * @return {string}
+ */
