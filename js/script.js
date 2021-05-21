@@ -30,21 +30,20 @@ buttons.forEach(element => {
     element.onclick = switchStatement;
 });
 
-// give each party array a new value "points"
-// parties.forEach(party => {
-//     party.points = 0;
-// })
-
-// subjects.forEach(subject => {
-//     subject.important = false;
-// });
-
-// Add Bootstrap class "d-none"
+/**
+ * Add Bootstrap class "d-none"
+ * 
+ * @param {*} element
+ */
 function hide(element) {
     element.classList.add("d-none");
 }
 
-// Remove Bootstrap class "d-none"
+/**
+ * Remove Bootstrap class "d-none"
+ * 
+ * @param {*} element
+ */
 function show(element) {
     element.classList.remove("d-none");
 }
@@ -91,24 +90,18 @@ function changeView() {
         changeSettingForParties();
         compareVotes();
         viewPartiesOnScreen();
-
-        // var x = document.getElementById("Bindend referendum").checked;
-        // console.log(x)
-
-        // checkboxes.forEach(checkbox => {
-        //     console.log(checkbox.value);
-        // })
-        // console.log(checkboxes)
     }
     
     viewContent(currentSubject);
 
-    // console.log("startButton: " + startButton);
-    // console.log(currentSubject);
-    console.log("currentContainer: " + currentContainer);
+    // console.log("currentContainer: " + currentContainer);
 }
 
-// Display the different statements
+/**
+ * Display statements on the page
+ * 
+ * @param {number} currentSubject 
+ */
 function viewContent(currentSubject) {
     if (currentSubject >= 0 && currentSubject < subjects.length) {
         title.innerHTML = subjects[currentSubject].title;
@@ -118,30 +111,23 @@ function viewContent(currentSubject) {
 
 // Switch between multiple statements
 function switchStatement() {
-    // console.log(this.id + " button");
-
     switch (this.id) {
         case "goBackButton":
-            // console.log("Ga terug");
             goToPreviousStatement();
             break;
         case "pro":
-            // console.log("Eens");
             addUserVote("pro")
             goToNextStatement();
             break;
         case "neither":
-            // console.log("Geen van beide");
             addUserVote("neither");
             goToNextStatement();
             break;
         case "contra":
-            // console.log("Oneens");
             addUserVote("contra");
             goToNextStatement();
             break;
         case "skip":
-            // console.log("Sla deze vraag over");
             addUserVote("");
             goToNextStatement();
             break;
@@ -151,7 +137,6 @@ function switchStatement() {
         default:
             break;
     }
-    // console.log(subjects);
 }
 
 function goToNextContainer() {
@@ -174,15 +159,13 @@ function goToNextStatement() {
         viewContent(currentSubject);
         checkVote();
     }
-
-    // console.log("currentSubject: " + currentSubject)
-    // console.log("currentContainer: " + currentContainer)
 }
 
 // Go back to the previous statement/container
 function goToPreviousStatement() {
     if (currentSubject > 0 && currentContainer == 1) {
         currentSubject--;
+
         checkVote();
         viewContent(currentSubject);
     } else if (currentSubject == 0 && currentContainer == 1) {
@@ -190,34 +173,26 @@ function goToPreviousStatement() {
 
         hide(statementContainer);
         hide(goBackButton);
-        
         hide(resultContainer);
         show(startContainer);
     } else if (currentSubject == (subjects.length - 1) && currentContainer == 2) {
-        /**
-         * als currentSubject hetzelfde is als het aantal subjects en de currentContainer is de importantStatementsContainer (2)
-         * dan wordt currentContainer met 1 verlaagd (zodat je in de statementsContainer komt)
-         * en wordt met changeView() de view aangepast
-         */
         currentContainer--;
+
         hide(importantStatementsContainer);
         hide(nextStepButton);
         changeView();
     } else if (currentContainer == 3 || currentContainer || 4) {
         currentContainer--;
+
         hide(importantPartiesContainer);
         hide(resultContainer);
         changeView();
     }
-
-    // console.log("currentSubject: " + currentSubject)
-    // console.log("currentContainer: " + currentContainer)
 }
 
 function addUserVote(vote) {
     subjects[currentSubject].vote = vote;
 }
-
 
 function checkVote() {
     buttons.forEach(element => {
@@ -227,10 +202,6 @@ function checkVote() {
             element.classList.remove("btn-primary");
         }
     });
-
-    // subjects.forEach(subject => {
-    //     console.log("**" + subject.title + ": " + subject.vote)
-    // })
 }
 
 // Compare the user's votes with the votes of the parties
@@ -248,13 +219,12 @@ function compareVotes() {
             }
         });
     });
-    console.log(parties)
+    // console.log(parties)
 }
 
 function addPointsToParties(subjectParty) {
     parties.forEach(party => {
         if (party.name == subjectParty.name) {
-            // party.points = 0;
             party.points++;
         }
     });
@@ -278,9 +248,8 @@ function viewPartiesOnScreen() {
 }
 
 /**
- * in de object parameter wordt subjects van functie viewStatementWithCheckbox en 
- * options van viewPartySelectionWithCheckbox meegegeven
  * 
+ * @param {object} object subjects from viewStatementWithCheckbox and options from viewPartySelectionWithCheckbox
  */
 function createCheckbox(object) {
     var div = document.createElement("div");
@@ -339,6 +308,11 @@ function changeSettingForParties() {
     doSomethingWithCheckbox();
 }
 
+/**
+ * remove firstChild from div/li to prevent duplicates
+ * 
+ * @param {*} childNode subjectTitle (from viewStatementWithCheckbox()) / partySelection (from viewPartySelectionWithCheckbox())
+ */
 function removeChildNode(childNode) {
     while (childNode.firstChild) {
         childNode.removeChild(childNode.firstChild);
