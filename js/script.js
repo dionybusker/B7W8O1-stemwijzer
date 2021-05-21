@@ -222,9 +222,9 @@ function addUserVote(vote) {
 function checkVote() {
     buttons.forEach(element => {
         if (subjects[currentSubject].vote != "" && element.id == subjects[currentSubject].vote) {
-            element.style.backgroundColor = "blue";
+            element.classList.add("btn-primary");
         } else {
-            element.style.backgroundColor = "";
+            element.classList.remove("btn-primary");
         }
     });
 
@@ -362,6 +362,7 @@ function doSomethingWithCheckbox() {
         subjects.forEach(subject => {
             if (subject.title == checkbox.value) {
                 subject.important = true;
+                
             }
         });
 
