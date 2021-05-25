@@ -1,0 +1,8 @@
+body {
+    background-image: url("../img/bg.png");
+    background-size: cover;
+}
+
+#startContainer, #statementContainer, #importantStatementContainer, #importantPartiesContainer, #resultContainer {
+    min-height: 750px;
+}

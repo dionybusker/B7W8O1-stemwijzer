@@ -15,6 +15,7 @@ const buttons = document.querySelectorAll(".buttons");
 const partyName = document.getElementById("partyName");
 const subjectTitle = document.getElementById("subjectTitle");
 const partySelection = document.getElementById("partySelection");
+const statementsLengthText = document.getElementById("statementsLengthText");
 
 const partySelectionOptions = [{"title": "Grote partijen"}, {"title": "Seculiere partijen"}];
 
@@ -26,6 +27,10 @@ var currentContainer = 0; // Always start with startContainer (0)
 
 var subjectCheckboxesCreated = false;
 var partyCheckboxesCreated = false;
+
+var statementsLength = subjects.length;
+
+statementsLengthText.innerText = statementsLength;
 
 startButton.onclick = changeView;
 

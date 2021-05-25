@@ -14,18 +14,25 @@
 <body>
     
     <!-- currentContainer => 0 (startContainer) -->
-    <div id="startContainer">
-        <h1>StemWijzer</h1>
-        <p>Dit is een stemwijzer.</p>
+    <div id="startContainer" class="col-8 bg-white mx-auto">
+        <img src="img/stemwijzer-logo.png" alt="stemwijzer logo">
+        <p class="font-weight-bold">StemWijzer Tweede Kamer 2017</p>
+
+        <p>Test uw politieke voorkeur aan de hand <span id="statementsLengthText"></span> stellingen</p>
+
+        <i class="fas fa-universal-access"></i>
+        <i class="fas fa-lock"></i>
 
         <button id="startButton" class="btn btn-info">Start</button>
     </div>
 
-    <button id="goBackButton" class="buttons d-none">Ga terug</button>
-    <button id="nextStepButton" class="buttons d-none">Volgende stap</button>
+    <div class="col-8 bg-white mx-auto">
+        <button id="goBackButton" class="buttons d-none">Ga terug</button>
+        <button id="nextStepButton" class="buttons d-none">Volgende stap</button>
+    </div>
 
     <!-- currentContainer => 1 (statementContainer) -->
-    <div id="statementContainer" class="d-none">
+    <div id="statementContainer" class="col-8 bg-white mx-auto d-none">
         <h1 id="title">Titel</h1>
         <p id="statement">Statement</p>
 
@@ -36,21 +43,21 @@
     </div>
 
     <!-- currentContainer => 2 (importantStatementsContainer) -->
-    <div id="importantStatementsContainer" class="d-none">
+    <div id="importantStatementsContainer" class="col-8 bg-white mx-auto d-none">
         <h1>Belangrijke stellingen</h1>
         <p>Hier moet de gebruiker stellingen kiezen die hij/zij belangrijk vindt.</p>
         <div id="subjectTitle"></div>
     </div>
 
     <!-- currentContainer => 3 (importantPartiesContainer) -->
-    <div id="importantPartiesContainer" class="d-none">
+    <div id="importantPartiesContainer" class="col-8 bg-white mx-auto d-none">
         <h1>Belangrijke partijen</h1>
         <p>Hier moet de gebruiker partijen kiezen die hij/zij belangrijk vindt.</p>
         <div id="partySelection"></div>
     </div>
 
     <!-- currentContainer => 4 (resultContainer) -->
-    <div id="resultContainer" class="d-none">
+    <div id="resultContainer" class="col-8 bg-white mx-auto d-none">
         <h1>Partijen</h1>
         <ul id="partyName"></ul>
     </div>
