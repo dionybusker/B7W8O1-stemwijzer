@@ -24,6 +24,8 @@ const partySize = 15;
 var currentSubject = 0;
 var currentContainer = 0; // Always start with startContainer (0)
 
+// var subjectCheckboxesCreated = false;
+
 startButton.onclick = changeView;
 
 buttons.forEach(element => {
@@ -277,13 +279,17 @@ function createCheckbox(object) {
     }
 }
 
+// checkboxen worden nu steeds opnieuw aangemaakt omdat deze functie steeds opnieuw wordt aangeroepen
 function viewStatementWithCheckbox() {
     removeChildNode(subjectTitle);
 
     if (currentContainer == 2) {
-        subjects.forEach(subject => {
-            createCheckbox(subject);
-        });
+        // if (!subjectCheckboxesCreated) {
+            subjects.forEach(subject => {
+                createCheckbox(subject);
+            });
+            // subjectCheckboxesCreated = true;
+        // }
     }
 }
 
