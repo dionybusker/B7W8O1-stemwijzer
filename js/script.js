@@ -24,7 +24,8 @@ const partySize = 15;
 var currentSubject = 0;
 var currentContainer = 0; // Always start with startContainer (0)
 
-// var subjectCheckboxesCreated = false;
+var subjectCheckboxesCreated = false;
+var partyCheckboxesCreated = false;
 
 startButton.onclick = changeView;
 
@@ -73,14 +74,18 @@ function changeView() {
         show(importantStatementsContainer);
         show(nextStepButton);
 
-        viewStatementWithCheckbox();
+        if (!subjectCheckboxesCreated) {
+            viewStatementWithCheckbox();
+        }
     } else if (currentContainer == 3) {
         hide(importantStatementsContainer);
         show(importantPartiesContainer);
         show(nextStepButton);
 
         // createCheckbox();
-        viewPartySelectionWithCheckbox();
+        if (!partyCheckboxesCreated) {
+            viewPartySelectionWithCheckbox();
+        }
     } else if (currentContainer == 4) {
         // const checkboxes = document.querySelectorAll("input[name='subject']:checked");
         
@@ -284,12 +289,10 @@ function viewStatementWithCheckbox() {
     removeChildNode(subjectTitle);
 
     if (currentContainer == 2) {
-        // if (!subjectCheckboxesCreated) {
-            subjects.forEach(subject => {
-                createCheckbox(subject);
-            });
-            // subjectCheckboxesCreated = true;
-        // }
+        subjects.forEach(subject => {
+            createCheckbox(subject);
+        });
+        subjectCheckboxesCreated = true;
     }
 }
 
@@ -300,7 +303,7 @@ function viewPartySelectionWithCheckbox() {
         partySelectionOptions.forEach(option => {
             createCheckbox(option);
         });
-
+        partyCheckboxesCreated = true;
     }
 }
 
