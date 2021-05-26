@@ -51,8 +51,8 @@
         </div>
     
         <!-- currentContainer => 1 (statementContainer) -->
-        <div id="statementContainer" class="col-8 d-none mx-auto p-4">
-            <h1 id="title" class="text-custom-blue">Titel</h1>
+        <div id="statementContainer" class="col-8 mx-auto p-4 d-none">
+            <h2 id="title" class="text-custom-blue">Titel</h2>
             <p id="statement">Statement</p>
     
             <button id="pro" class="buttons btn btn-dark col-2 p-2">Eens</button>
@@ -62,10 +62,12 @@
         </div>
     
         <!-- currentContainer => 2 (importantStatementsContainer) -->
-        <div id="importantStatementsContainer" class="d-none">
-            <h1>Belangrijke stellingen</h1>
-            <p>Hier moet de gebruiker stellingen kiezen die hij/zij belangrijk vindt.</p>
-            <div id="subjectTitle"></div>
+        <div id="importantStatementsContainer" class="col-8 mx-auto d-none">
+            <h2 class="text-custom-blue">Zijn er onderwerpen die u extra belangrijk vindt?</h2>
+            <p>Aangevinkte stellingen tellen extra mee bij het berekenen van het resultaat.</p>
+            
+            <h5 class="my-3">Extra belangrijke onderwerpen</h5>
+            <div id="subjectTitle" class="row col-12 p-0"></div>
         </div>
     
         <!-- currentContainer => 3 (importantPartiesContainer) -->
@@ -88,7 +90,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
     
-    <script src="http://stemwijzer.dvc-icta.nl/testdata.js"></script>
+    <script src="http://stemwijzer.dvc-icta.nl/data.js"></script>
     <script src="js/script.js"></script>
 </body>
 </html>

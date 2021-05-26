@@ -270,6 +270,7 @@ function viewPartiesOnScreen() {
  */
 function createCheckbox(object) {
     var div = document.createElement("div");
+        div.classList.add("col-4");
 
     var checkbox = document.createElement("input");
         checkbox.type = "checkbox";
@@ -277,6 +278,7 @@ function createCheckbox(object) {
         checkbox.className = "statementCheckboxes";
         checkbox.value = object.title;
         checkbox.id = object.title;
+        checkbox.classList.add("m-1");
 
     var label = document.createElement("label");
         label.htmlFor = object.title;
