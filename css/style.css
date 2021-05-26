@@ -3,6 +3,14 @@ body {
     background-size: cover;
 }
 
-#startContainer, #statementContainer, #importantStatementContainer, #importantPartiesContainer, #resultContainer {
+/* #startContainer, #statementContainer, #importantStatementContainer, #importantPartiesContainer, #resultContainer {
     min-height: 750px;
+} */
+
+.text-custom-blue {
+    color: rgb(1, 180, 220);
+}
+
+i {
+    font-size: 40px;
 }

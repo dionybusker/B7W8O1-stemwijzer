@@ -14,16 +14,34 @@
 <body>
     
     <!-- currentContainer => 0 (startContainer) -->
-    <div id="startContainer" class="col-8 bg-white mx-auto">
-        <img src="img/stemwijzer-logo.png" alt="stemwijzer logo">
-        <p class="font-weight-bold">StemWijzer Tweede Kamer 2017</p>
+    <div id="startContainer" class="row col-8 bg-white mx-auto my-4 p-4">
+        <div class="col-12 p-4">
+            <img src="img/stemwijzer-logo.png" alt="stemwijzer logo">
+            <p class="font-weight-bold">StemWijzer Tweede Kamer 2017</p>
+    
+            <p class="font-weight-bold text-custom-blue">Test uw politieke voorkeur aan de hand <span id="statementsLengthText"></span> stellingen</p>
+        </div>
 
-        <p>Test uw politieke voorkeur aan de hand <span id="statementsLengthText"></span> stellingen</p>
+        <div class="col-12">
+            <div class="row">
+                <div class="col-8">
+                    <div class="row col-12">
+                        <i class="fas fa-universal-access text-custom-blue col-1"></i>
+                        <p class="col-5 p-0">Bekijk de toegankelijke versie voor mensen met een beperking</p>
+                    </div>
 
-        <i class="fas fa-universal-access"></i>
-        <i class="fas fa-lock"></i>
-
-        <button id="startButton" class="btn btn-info">Start</button>
+                    <div class="row col-12">
+                        <i class="fas fa-lock text-custom-blue col-1"></i>
+                        <p class="col-5 p-0">De StemWijzer maakt geen gebruik van cookies. Klik hier voor de volledige privacy statement</p>
+                    </div>
+                </div>
+            
+                <div class="col-4">
+                    <button id="startButton" class="col-4 p-3 btn btn-info font-weight-bold">Start</button>
+                </div>
+            </div>
+            
+        </div>
     </div>
 
     <div class="col-8 bg-white mx-auto">
