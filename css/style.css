@@ -11,6 +11,29 @@ body {
     color: rgb(1, 180, 220);
 }
 
-i {
+.text-custom-black {
+    color: #000;
+}
+
+/* .text-custom-grey {
+    color: rgb(231, 234, 235);
+} */
+
+#startContainer i {
     font-size: 40px;
+}
+
+#goBackButton i {
+    font-size: 25px;
+}
+
+#goBackButton {
+    border: none;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+}
+
+#statement {
+    font-size: 25px;
 }

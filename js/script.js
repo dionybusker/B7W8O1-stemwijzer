@@ -116,7 +116,7 @@ function changeView() {
  */
 function viewContent(currentSubject) {
     if (currentSubject >= 0 && currentSubject < subjects.length) {
-        title.innerHTML = subjects[currentSubject].title;
+        title.innerHTML = (currentSubject+1) + ". " + subjects[currentSubject].title;
         statement.innerHTML = subjects[currentSubject].statement;
     }
 }
@@ -208,10 +208,15 @@ function addUserVote(vote) {
 
 function checkVote() {
     buttons.forEach(element => {
-        if (subjects[currentSubject].vote != "" && element.id == subjects[currentSubject].vote) {
-            element.classList.add("btn-primary");
-        } else {
-            element.classList.remove("btn-primary");
+        if (element.id != "goBackButton" && element.id != "nextStepButton") {
+            if (subjects[currentSubject].vote != "" && element.id == subjects[currentSubject].vote) {
+                element.classList.add("btn-primary");
+                element.classList.remove("btn-dark");
+            } else {
+                element.classList.remove("btn-primary");
+                element.classList.add("btn-dark");
+            }
+
         }
     });
 }
