@@ -19,7 +19,7 @@
             <img src="img/stemwijzer-logo.png" alt="stemwijzer logo">
             <p class="font-weight-bold">StemWijzer Tweede Kamer 2017</p>
     
-            <p class="font-weight-bold text-custom-blue">Test uw politieke voorkeur aan de hand <span id="statementsLengthText"></span> stellingen</p>
+            <p class="font-weight-bold text-custom-blue">Test uw politieke voorkeur aan de hand van <span id="statementsLengthText"></span> stellingen</p>
         </div>
 
         <div class="col-12">
@@ -71,10 +71,10 @@
         </div>
     
         <!-- currentContainer => 3 (importantPartiesContainer) -->
-        <div id="importantPartiesContainer" class="d-none">
-            <h1>Belangrijke partijen</h1>
-            <p>Hier moet de gebruiker partijen kiezen die hij/zij belangrijk vindt.</p>
-            <div id="partySelection"></div>
+        <div id="importantPartiesContainer" class="col-8 mx-auto d-none">
+            <h2 class="text-custom-blue">Belangrijke partijen</h2>
+            <p>Aangevinkte soorten partijen worden weergegeven in het resultaat. Indien niks is aangevinkt, worden alle partijen getoond.</p>
+            <div id="partySelection" class="row col-12 p-0"></div>
         </div>
     
         <!-- currentContainer => 4 (resultContainer) -->
@@ -90,7 +90,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
     
-    <script src="http://stemwijzer.dvc-icta.nl/data.js"></script>
+    <script src="http://stemwijzer.dvc-icta.nl/testdata.js"></script>
     <script src="js/script.js"></script>
 </body>
 </html>
