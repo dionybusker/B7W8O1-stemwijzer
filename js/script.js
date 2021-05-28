@@ -256,7 +256,8 @@ function viewPartiesOnScreen() {
         parties.forEach(party => {
             if (party.display != false) {
                 var li = document.createElement("li");
-                    li.innerHTML += party.name + ", " + party.points + " punten";
+                    li.innerHTML += party.name + " - " + party.points + " punten";
+                    li.classList.add("list-group-item");
                 
                 partyName.appendChild(li);
             }

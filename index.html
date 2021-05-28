@@ -46,8 +46,8 @@
 
     <div class="row col-8 bg-white mx-auto my-4">
         <div class="col-12">
-            <button id="goBackButton" class="buttons d-none btn-secondary"><i class="fas fa-arrow-left"></i></button>
-            <button id="nextStepButton" class="buttons d-none btn btn-info font-weight-bold">Ga verder</button>
+            <button id="goBackButton" class="buttons btn-secondary rounded-circle border-0 d-none"><i class="fas fa-arrow-left"></i></button>
+            <button id="nextStepButton" class="buttons btn btn-info font-weight-bold d-none">Ga verder</button>
         </div>
     
         <!-- currentContainer => 1 (statementContainer) -->
@@ -67,20 +67,21 @@
             <p>Aangevinkte stellingen tellen extra mee bij het berekenen van het resultaat.</p>
             
             <h5 class="my-3">Extra belangrijke onderwerpen</h5>
-            <div id="subjectTitle" class="row col-12 p-0"></div>
+            <div id="subjectTitle" class="row col-12 p-0 my-3"></div>
         </div>
     
         <!-- currentContainer => 3 (importantPartiesContainer) -->
         <div id="importantPartiesContainer" class="col-8 mx-auto d-none">
             <h2 class="text-custom-blue">Belangrijke partijen</h2>
             <p>Aangevinkte soorten partijen worden weergegeven in het resultaat. Indien niks is aangevinkt, worden alle partijen getoond.</p>
-            <div id="partySelection" class="row col-12 p-0"></div>
+            <div id="partySelection" class="row col-12 p-0 my-3"></div>
         </div>
     
         <!-- currentContainer => 4 (resultContainer) -->
-        <div id="resultContainer" class="d-none">
-            <h1>Partijen</h1>
-            <ul id="partyName"></ul>
+        <div id="resultContainer" class="col-8 mx-auto d-none">
+            <h2 class="text-custom-blue">Resultaat</h2>
+            <p>Onderstaand vind u het resultaat van de stemwijzer op basis van uw antwoorden tegenover dat van de partijen.</p>
+            <ul id="partyName" class="list-group my-3"></ul>
         </div>
     </div>
     
