@@ -3,9 +3,9 @@ body {
     background-size: cover;
 }
 
-/* #startContainer, #statementContainer, #importantStatementContainer, #importantPartiesContainer, #resultContainer {
-    min-height: 750px;
-} */
+#startContainer, #statementContainer, #importantStatementsContainer, #importantPartiesContainer, #resultContainer {
+    min-height: 500px;
+}
 
 .text-custom-blue {
     color: rgb(1, 180, 220);
@@ -14,10 +14,6 @@ body {
 .text-custom-black {
     color: #000;
 }
-
-/* .text-custom-grey {
-    color: rgb(231, 234, 235);
-} */
 
 #startContainer i {
     font-size: 40px;

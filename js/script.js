@@ -1,4 +1,6 @@
-// Constants
+/**
+ * Constants used in this project
+ */
 const startContainer = document.getElementById("startContainer");
 const statementContainer = document.getElementById("statementContainer");
 const importantStatementsContainer = document.getElementById("importantStatementsContainer");
@@ -21,15 +23,16 @@ const partySelectionOptions = [{"title": "Grote partijen"}, {"title": "Seculiere
 
 const partySize = 15;
 
-// Variables
+/**
+ * Variables used in this project
+ */
 var currentSubject = 0;
-var currentContainer = 0; // Always start with startContainer (0)
+var currentContainer = 0;
 
 var subjectCheckboxesCreated = false;
 var partyCheckboxesCreated = false;
 
 var statementsLength = subjects.length;
-
 statementsLengthText.innerText = statementsLength;
 
 startButton.onclick = changeView;
@@ -39,7 +42,7 @@ buttons.forEach(element => {
 });
 
 /**
- * Add Bootstrap class "d-none"
+ * Add Bootstrap class "d-none" to hide e.g. the current container
  * 
  * @param {*} element
  */
@@ -48,7 +51,7 @@ function hide(element) {
 }
 
 /**
- * Remove Bootstrap class "d-none"
+ * Remove Bootstrap class "d-none" to display e.g. the current container
  * 
  * @param {*} element
  */
@@ -56,16 +59,14 @@ function show(element) {
     element.classList.remove("d-none");
 }
 
-// Hide startContainer and show statementContainer
+/**
+ * Hide and show different container based on currentContainer
+ */
 function changeView() {
     if (currentSubject < 0) {
         currentSubject = 0;
     }
 
-    /**
-     * er wordt bepaald wat currentContainer is
-     * op basis hiervan wordt er een view weergegeven
-     */
     if (currentContainer == 0) {
         hide(startContainer);
         show(statementContainer);
@@ -87,13 +88,10 @@ function changeView() {
         show(importantPartiesContainer);
         show(nextStepButton);
 
-        // createCheckbox();
         if (!partyCheckboxesCreated) {
             viewPartySelectionWithCheckbox();
         }
     } else if (currentContainer == 4) {
-        // const checkboxes = document.querySelectorAll("input[name='subject']:checked");
-        
         hide(importantPartiesContainer);
         hide(nextStepButton);
         show(resultContainer);
@@ -105,23 +103,23 @@ function changeView() {
     }
     
     viewContent(currentSubject);
-
-    // console.log("currentContainer: " + currentContainer);
 }
 
 /**
- * Display statements on the page
+ * Display statements with the correct title and statement
  * 
- * @param {number} currentSubject 
+ * @param {number} currentSubject position of the current subject to display
  */
 function viewContent(currentSubject) {
     if (currentSubject >= 0 && currentSubject < subjects.length) {
-        title.innerHTML = (currentSubject+1) + ". " + subjects[currentSubject].title;
+        title.innerHTML = (currentSubject + 1) + ". " + subjects[currentSubject].title;
         statement.innerHTML = subjects[currentSubject].statement;
     }
 }
 
-// Switch between multiple statements
+/**
+ * Functionality for the buttons to switch between statements and containers
+ */
 function switchStatement() {
     switch (this.id) {
         case "goBackButton":
@@ -151,6 +149,9 @@ function switchStatement() {
     }
 }
 
+/**
+ * Go to the next container, e.g. when you've clicked through all statements
+ */
 function goToNextContainer() {
     if (currentContainer == 1 && currentSubject == (subjects.length - 1)) {
         currentContainer++;
@@ -162,7 +163,9 @@ function goToNextContainer() {
     }
 }
 
-// Go to the next statement/container
+/**
+ * Go to the next statement, if you've clicked through all statements you go to the next container
+ */
 function goToNextStatement() {
      goToNextContainer();
 
@@ -173,7 +176,9 @@ function goToNextStatement() {
     }
 }
 
-// Go back to the previous statement/container
+/**
+ * Go to the previous statement, if you've clicked through all statements you go to the previous container
+ */
 function goToPreviousStatement() {
     if (currentSubject > 0 && currentContainer == 1) {
         currentSubject--;
@@ -202,10 +207,18 @@ function goToPreviousStatement() {
     }
 }
 
+/**
+ * When clicked on a button, a vote will be added to the subjects object
+ * 
+ * @param {string} vote a string based on what button has been clicked in switchStatement()
+ */
 function addUserVote(vote) {
     subjects[currentSubject].vote = vote;
 }
 
+/**
+ * Check which button has been clicked and keep this selected
+ */
 function checkVote() {
     buttons.forEach(element => {
         if (element.id != "goBackButton" && element.id != "nextStepButton") {
@@ -221,11 +234,15 @@ function checkVote() {
     });
 }
 
-// Compare the user's votes with the votes of the parties
+/**
+ * Compare the user's votes with the parties' votes to add points
+ * Add extra points when a statement (subject) has been marked as important
+ */
 function compareVotes() {
     parties.forEach(party => {
         party.points = 0;
     });
+
     subjects.forEach(subject => {
         subject.parties.forEach(subjectParty => {
             if (subject.vote == subjectParty.position) {
@@ -236,9 +253,13 @@ function compareVotes() {
             }
         });
     });
-    // console.log(parties)
 }
 
+/**
+ * Add points to the correct party when a user's vote is the same as the party's vote
+ * 
+ * @param {object} subjectParty parties object inside the subjects object
+ */
 function addPointsToParties(subjectParty) {
     parties.forEach(party => {
         if (party.name == subjectParty.name) {
@@ -247,6 +268,9 @@ function addPointsToParties(subjectParty) {
     });
 }
 
+/**
+ * Display all parties on screen, ordered from most points to least points
+ */
 function viewPartiesOnScreen() {
     removeChildNode(partyName);
 
@@ -266,8 +290,9 @@ function viewPartiesOnScreen() {
 }
 
 /**
+ * Create a checkbox
  * 
- * @param {object} object subjects from viewStatementWithCheckbox and options from viewPartySelectionWithCheckbox
+ * @param {object} object "subjects" object from viewStatementWithCheckbox and "options" object from viewPartySelectionWithCheckbox
  */
 function createCheckbox(object) {
     var div = document.createElement("div");
@@ -297,7 +322,9 @@ function createCheckbox(object) {
     }
 }
 
-// checkboxen worden nu steeds opnieuw aangemaakt omdat deze functie steeds opnieuw wordt aangeroepen
+/**
+ * Display checkboxes with statements for importantStatementsContainer
+ */
 function viewStatementWithCheckbox() {
     removeChildNode(subjectTitle);
 
@@ -309,6 +336,9 @@ function viewStatementWithCheckbox() {
     }
 }
 
+/**
+ * Display checkboxes with options for importantPartiesContainer
+ */
 function viewPartySelectionWithCheckbox() {
     removeChildNode(partySelection);
 
@@ -320,18 +350,20 @@ function viewPartySelectionWithCheckbox() {
     }
 }
 
-// instellen dat de gebruiker alleen grote partijen, of alleen seculiere partijen wilt zien
-// niks aangevinkt betekent alle partijen inzien
+/**
+ * Display parties based on user's choice for "Grote partijen" or "Seculiere partijen"
+ * If none selected, all parties will be displayed
+ */
 function changeSettingForParties() {
     parties.forEach(party => {
         party.display = true;
     });
 
-    doSomethingWithCheckbox();
+    checkSelectedCheckboxes();
 }
 
 /**
- * remove firstChild from div/li to prevent duplicates
+ * Remove firstChild from childNode to prevent duplicates
  * 
  * @param {*} childNode subjectTitle (from viewStatementWithCheckbox()) / partySelection (from viewPartySelectionWithCheckbox())
  */
@@ -341,20 +373,24 @@ function removeChildNode(childNode) {
     }
 }
 
+/**
+ * Check importance of the statements
+ */
 function checkStatementImportance() {
     subjects.forEach(subject => {
         subject.important = false;
     });
 
-    doSomethingWithCheckbox();
+    checkSelectedCheckboxes();
 }
 
-function doSomethingWithCheckbox() {
+/**
+ * Check selected checkboxes to display the correct parties on screen and to mark the correct subjects as important
+ */
+function checkSelectedCheckboxes() {
     const checkboxes = document.querySelectorAll("input[name='object']:checked");
 
     checkboxes.forEach(checkbox => {
-        console.log(checkbox.value);
-
         subjects.forEach(subject => {
             if (subject.title == checkbox.value) {
                 subject.important = true;
@@ -377,11 +413,3 @@ function doSomethingWithCheckbox() {
         });
     });
 }
-
-/**
- * Korte omschrijving wat de functie doet
- * 
- * @param {string} parameter (de naam van de param) - betekenis van de string
- * @param {object} parameter (de naam van de param) - wat er in het object zit
- * @return {string}
- */
