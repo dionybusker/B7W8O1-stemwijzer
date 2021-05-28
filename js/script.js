@@ -229,7 +229,6 @@ function checkVote() {
                 element.classList.remove("btn-primary");
                 element.classList.add("btn-dark");
             }
-
         }
     });
 }
@@ -247,7 +246,7 @@ function compareVotes() {
         subject.parties.forEach(subjectParty => {
             if (subject.vote == subjectParty.position) {
                 addPointsToParties(subjectParty);
-                if (subject.important == true) {
+                if (subject.important) {
                     addPointsToParties(subjectParty);
                 }
             }
@@ -394,7 +393,6 @@ function checkSelectedCheckboxes() {
         subjects.forEach(subject => {
             if (subject.title == checkbox.value) {
                 subject.important = true;
-                
             }
         });
 
